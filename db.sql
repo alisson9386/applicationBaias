@@ -14,13 +14,64 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura do banco de dados para application_baias
+CREATE DATABASE IF NOT EXISTS `application_baias` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `application_baias`;
+
+-- Copiando estrutura para tabela application_baias.baia
+CREATE TABLE IF NOT EXISTS `baia` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `andar` int NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Exportação de dados foi desmarcado.
 
--- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela application_baias.reservas
+CREATE TABLE IF NOT EXISTS `reservas` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `periodo_inicio` datetime NOT NULL,
+  `periodo_fim` datetime NOT NULL,
+  `id_usuario_reserva` int NOT NULL,
+  `id_baia_reserva` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela application_baias.setores
+CREATE TABLE IF NOT EXISTS `setores` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_gerente` int NOT NULL,
+  `nome_setor` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela application_baias.tipo_usuarios
+CREATE TABLE IF NOT EXISTS `tipo_usuarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `tipo` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela application_baias.usuario
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `idade` int NOT NULL,
+  `tipo_user` int NOT NULL,
+  `setor_user` int NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `usuario` varchar(255) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Exportação de dados foi desmarcado.
 
