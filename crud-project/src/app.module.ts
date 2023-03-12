@@ -25,7 +25,7 @@ import { TipoUser } from './entities/tipo-user.entity';
       database: 'application_baias',
       entities: [User, Baia, Reserva, Setores, TipoUser],
       synchronize: true,
-    }), BaiaModule, ReservasModule, SetoresModule, TipoUsersModule
+    }), UsersModule, BaiaModule, ReservasModule, SetoresModule, TipoUsersModule
   ],
   controllers: [AppController],
   providers: [AppService],
