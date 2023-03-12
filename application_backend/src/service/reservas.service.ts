@@ -27,7 +27,10 @@ export class ReservasService {
     return this.reservaRepository.update(id, updateReservaDto);
   }
 
-  remove(id: number) {
-    return this.reservaRepository.delete(id);
+  async desactivateReserva(id: number): Promise<boolean> {
+    const reserva = await this.reservaRepository.findOneBy({ id: id });
+    reserva.fl_ativo = false;
+    const save = await this.reservaRepository.save(reserva);
+    return save ? true : false;
   }
 }

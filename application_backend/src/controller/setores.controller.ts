@@ -29,6 +29,7 @@ export class SetoresController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.setoresService.remove(+id);
+    const desactivate = this.setoresService.desactivateSetor(+id);
+    return desactivate ? "Setor deletado" : "Erro ao deletar";
   }
 }

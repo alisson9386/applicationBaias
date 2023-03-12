@@ -7,4 +7,7 @@ export class TipoUser {
 
   @Column()
   tipo: string;
+
+  @Column({default: true})
+  fl_ativo: boolean;
 }

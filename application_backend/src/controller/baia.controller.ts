@@ -29,6 +29,7 @@ export class BaiaController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.baiaService.remove(+id);
+    const desactivate = this.baiaService.desactivateBaia(+id);
+    return desactivate ? "Baia deletada" : "Erro ao deletar";
   }
 }

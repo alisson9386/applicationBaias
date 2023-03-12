@@ -10,4 +10,7 @@ export class Setores {
 
   @Column()
   id_gerente: number;
+  
+  @Column({default: true})
+  fl_ativo: boolean;
 }

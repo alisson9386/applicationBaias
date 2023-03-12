@@ -12,4 +12,6 @@ export class Baia {
   @Column()
   andar: number;
 
+  @Column({default: true})
+  fl_ativo: boolean;
 }

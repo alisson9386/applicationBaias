@@ -16,4 +16,7 @@ export class Reserva {
 
   @Column()
   id_baia_reserva: number;
+
+  @Column({default: true})
+  fl_ativo: boolean;
 }

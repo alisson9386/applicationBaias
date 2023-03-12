@@ -27,7 +27,10 @@ export class SetoresService {
     return this.setoresRepository.update(id, updateSetoreDto);
   }
 
-  remove(id: number) {
-    return this.setoresRepository.delete(id);
+  async desactivateSetor(id: number): Promise<boolean> {
+    const setor = await this.setoresRepository.findOneBy({ id: id });
+    setor.fl_ativo = false;
+    const save = await this.setoresRepository.save(setor);
+    return save ? true : false;
   }
 }

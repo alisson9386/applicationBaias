@@ -29,6 +29,7 @@ export class ReservasController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.reservasService.remove(+id);
+    const desactivate = this.reservasService.desactivateReserva(+id);
+    return desactivate ? "Reserva deletada" : "Erro ao deletar";
   }
 }

@@ -27,7 +27,10 @@ export class BaiaService {
     return this.baiaRepository.update(id, updateBaiaDto);
   }
 
-  remove(id: number) {
-    return this.baiaRepository.delete(id);
+  async desactivateBaia(id: number): Promise<boolean> {
+    const baia = await this.baiaRepository.findOneBy({ id: id });
+    baia.fl_ativo = false;
+    const save = await this.baiaRepository.save(baia);
+    return save ? true : false;
   }
 }
