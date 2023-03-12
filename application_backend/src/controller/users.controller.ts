@@ -29,6 +29,7 @@ export class UsersController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+    const desactivate = this.usersService.desactivateUser(+id);
+    return desactivate ? "Usuário deletado" : "Erro ao deletar";
   }
 }

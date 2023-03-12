@@ -27,7 +27,10 @@ export class UsersService {
     return this.userRepository.update(id, updateUserDto);
   }
 
-  remove(id: number) {
-    return this.userRepository.delete(id);
+  async desactivateUser(id: number): Promise<boolean> {
+    const user = await this.userRepository.findOneBy({ id: id });
+    user.fl_ativo = false;
+    const save = await this.userRepository.save(user);
+    return save ? true : false;
   }
 }
