@@ -33,4 +33,15 @@ export class UsersService {
     const save = await this.userRepository.save(user);
     return save ? true : false;
   }
+
+  async validateUser(usuario: string, senha: string) {
+    const user = await this.userRepository.findOneBy({usuario: usuario});
+
+    if (user && user.senha === senha) {
+      const { senha, ...result } = user;
+      return result;
+    }
+
+    return null;
+  }
 }

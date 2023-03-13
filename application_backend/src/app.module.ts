@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -12,9 +12,15 @@ import { Baia } from './entities/baia.entity';
 import { Reserva } from './entities/reserva.entity';
 import { Setores } from './entities/setores.entity';
 import { TipoUser } from './entities/tipo-user.entity';
+import { JwtModule } from '@nestjs/jwt';
+import { JwtMiddleware } from './auth/jwt.middleware';
 
 @Module({
   imports: [
+    JwtModule.register({
+      secret: 'zaq12wsxZAQ!@WSXZ0rr0b@tmak',
+      signOptions: { expiresIn: '12h' },
+    }),
     UsersModule, 
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -28,6 +34,14 @@ import { TipoUser } from './entities/tipo-user.entity';
     }), UsersModule, BaiaModule, ReservasModule, SetoresModule, TipoUsersModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, JwtMiddleware],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+    .apply(JwtMiddleware)
+    .exclude({
+      path: 'users/login', method: RequestMethod.POST
+    }).forRoutes('*');
+  }
+}
