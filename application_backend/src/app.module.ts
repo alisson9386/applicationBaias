@@ -19,7 +19,7 @@ import { JwtMiddleware } from './auth/jwt.middleware';
   imports: [
     JwtModule.register({
       secret: 'zaq12wsxZAQ!@WSXZ0rr0b@tmak',
-      signOptions: { expiresIn: '12h' },
+      signOptions: { expiresIn: '30m' },
     }),
     UsersModule, 
     TypeOrmModule.forRoot({

@@ -10,6 +10,6 @@ async function bootstrap() {
   //const jwtService = app.get(JwtService);
   //app.use(new JwtMiddleware(jwtService));
   app.enableCors();
-  await app.listen(3000);
+  await app.listen(3001);
 }
 bootstrap();

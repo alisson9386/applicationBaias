@@ -12,7 +12,7 @@ export class AuthService {
         throw new HttpException('Usuário ou senha inválidos', HttpStatus.UNAUTHORIZED);
     }
     const payload = { user: authenticatedUser };
-    const secretKey = {secret: 'zaq12wsxZAQ!@WSXZ0rr0b@tmak'};
+    const secretKey = {secret: 'zaq12wsxZAQ!@WSXZ0rr0b@tmak', expiresIn: '30m'};
     return {
       token: this.jwtService.sign(payload, secretKey),
     };

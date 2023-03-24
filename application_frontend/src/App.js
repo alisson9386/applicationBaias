@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import './assets/style.scss'
+import NavbarComponent from './components/NavbarComponent'
+import { Switch, Router, Route } from 'react-router-dom';
+import history from './history';
+import LoginComponent from './components/LoginComponent';
+import HomeComponent from './components/HomeComponent';
+import AboutComponent from './components/AboutComponent';
+import ContactComponent from './components/ContactComponent';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+				<Router history={history}>
+						<Switch>
+							<Route path="/" exact component={LoginComponent}/>
+							<Route>
+								<NavbarComponent/>
+								<Switch>
+									<Route path="/index" component={HomeComponent}/>
+									<Route path="/about" component={AboutComponent}/>
+									<Route path="/contact" component={ContactComponent}/>
+								</Switch>
+							</Route>
+						</Switch>
+				</Router>
+		</div>
   );
 }
 
