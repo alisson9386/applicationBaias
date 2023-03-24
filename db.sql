@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- Servidor:                     localhost
+-- Servidor:                     127.0.0.1
 -- Versão do servidor:           8.0.31 - MySQL Community Server - GPL
 -- OS do Servidor:               Win64
 -- HeidiSQL Versão:              12.4.0.6659
@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `baia` (
   `id` int NOT NULL AUTO_INCREMENT,
   `andar` int NOT NULL,
   `nome` varchar(255) NOT NULL,
+  `fl_ativo` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -36,7 +37,12 @@ CREATE TABLE IF NOT EXISTS `reservas` (
   `periodo_fim` datetime NOT NULL,
   `id_usuario_reserva` int NOT NULL,
   `id_baia_reserva` int NOT NULL,
-  PRIMARY KEY (`id`)
+  `fl_ativo` tinyint NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `id_usuario_reserva` (`id_usuario_reserva`),
+  KEY `id_baia_reserva` (`id_baia_reserva`),
+  CONSTRAINT `FK_reservas_baia` FOREIGN KEY (`id_baia_reserva`) REFERENCES `baia` (`id`),
+  CONSTRAINT `FK_reservas_usuario` FOREIGN KEY (`id_usuario_reserva`) REFERENCES `usuario` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Exportação de dados foi desmarcado.
@@ -46,7 +52,10 @@ CREATE TABLE IF NOT EXISTS `setores` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_gerente` int NOT NULL,
   `nome_setor` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  `fl_ativo` tinyint NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `id_gerente` (`id_gerente`),
+  CONSTRAINT `FK_setores_usuario` FOREIGN KEY (`id_gerente`) REFERENCES `usuario` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Exportação de dados foi desmarcado.
@@ -55,6 +64,7 @@ CREATE TABLE IF NOT EXISTS `setores` (
 CREATE TABLE IF NOT EXISTS `tipo_usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,
   `tipo` varchar(255) NOT NULL,
+  `fl_ativo` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -70,8 +80,13 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `usuario` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `fl_ativo` tinyint NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `tipo_user` (`tipo_user`),
+  KEY `setor_user` (`setor_user`),
+  CONSTRAINT `FK_usuario_setores` FOREIGN KEY (`setor_user`) REFERENCES `setores` (`id`),
+  CONSTRAINT `FK_usuario_tipo_usuarios` FOREIGN KEY (`tipo_user`) REFERENCES `tipo_usuarios` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Exportação de dados foi desmarcado.
 
