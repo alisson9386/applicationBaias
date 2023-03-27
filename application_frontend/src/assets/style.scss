@@ -105,3 +105,52 @@ a:hover {
 a{
     text-decoration: none;
 }
+
+.parent img{
+  width: 60%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: -1;
+  size: 60%;
+  position: center;
+  
+}
+.parent {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+}
+
+.formReserva{
+    margin: 150px;
+    float: left;
+    border: 1px solid black; 
+    border-radius: 5px; 
+    padding: 20px; 
+    background-color: white;
+}
+
+.imgReserva{
+    float: right;
+}
+
+.formReserva input, select{
+    display: block; 
+    margin-bottom: 20px; 
+    width: 100%; 
+    padding: 10px; 
+    border-radius: 5px; 
+    text-align: center;
+    display: block; 
+    margin-bottom: 10px;
+}
+
+.formReserva button{
+    background-color: blue; 
+    color: white; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    border: none;
+}
+  

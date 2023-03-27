@@ -8,6 +8,7 @@ import LoginComponent from './components/LoginComponent';
 import HomeComponent from './components/HomeComponent';
 import AboutComponent from './components/AboutComponent';
 import ContactComponent from './components/ContactComponent';
+import ReservasComponent from './components/ReservasComponent';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
 								<NavbarComponent/>
 								<Switch>
 									<Route path="/index" component={HomeComponent}/>
+									<Route path="/reserv" component={ReservasComponent}/>
 									<Route path="/about" component={AboutComponent}/>
 									<Route path="/contact" component={ContactComponent}/>
 								</Switch>

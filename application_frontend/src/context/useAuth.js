@@ -1,13 +1,16 @@
 import history from '../history';
+import Cookies from 'js-cookie';
 
 class UseAuth {
 
   handleLogin(data) {
-    localStorage.setItem('token', data.token);
+    Cookies.set('token', data.token);
+    //localStorage.setItem('token', data.token);
   }
 
   handleLogout() {
-    localStorage.removeItem('token');
+    Cookies.remove('token');
+    //localStorage.removeItem('token');
     history.push('/');
   }
 

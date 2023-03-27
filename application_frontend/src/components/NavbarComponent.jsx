@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
 import history from '../history';
 import useAuth from '../context/useAuth';
 import { isExpired } from 'react-jwt';
@@ -8,6 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Cookies from 'js-cookie';
 
 const Toast = Swal.mixin({
     toast: true,
@@ -27,7 +27,7 @@ class NavbarComponent extends Component {
     }
 
     componentDidMount(){
-        const token = localStorage.getItem('token');
+        const token = Cookies.get('token');
         const isMyTokenExpired = isExpired(token);
         if(isMyTokenExpired){
             useAuth.handleLogout();
@@ -43,22 +43,26 @@ class NavbarComponent extends Component {
         return (
             <Navbar bg="dark" expand="lg" variant="dark">
             <Container>
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+            <Navbar.Brand href="/index">Reservation</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Link to="/index"><Nav.Link href="#home">Home</Nav.Link></Link>
-                    <Link to="/about"><Nav.Link href="#home">About</Nav.Link></Link>
-                    <Link to="/contact"><Nav.Link href="#home">Contact</Nav.Link></Link>
-                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">
-                        Another action
-                    </NavDropdown.Item>
+                    <Nav.Link href="/index">Home</Nav.Link>
+
+                    <NavDropdown title="Reservas" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="/reserv">Cadastrar Nova Reserva</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">Ver disponibilidades</NavDropdown.Item>
+                    </NavDropdown>
+
+                    <Nav.Link href="/about">About</Nav.Link>
+                    <Nav.Link href="/contact">Contact</Nav.Link>
+                    <NavDropdown title="Perfil" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="#action/3.1">Minhas Reservas</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">Perfil</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">
-                        Separated link
+                    <NavDropdown.Item href="#" onClick={this.logout}>
+                        Logout
                     </NavDropdown.Item>
                     </NavDropdown>
                 </Nav>

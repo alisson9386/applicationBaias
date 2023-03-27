@@ -86,7 +86,7 @@ class LoginComponent extends Component {
                     <input type="text" id="usuario" placeholder="Digite seu usuario" value={this.state.usuario} onChange={this.changeUserHandler} />
                     <label htmlFor="password">Senha</label>
                     <input type="password" id="senha" value={this.state.senha} onChange={this.changePasswordHandler} placeholder="Digite sua senha" />
-                    <a href="/">Esqueci minha senha</a>
+                    {/* <a href="/">Esqueci minha senha</a> */}
                     <input type="submit" onClick={this.loginExecute} value="Acessar" className="btn" />
                 </form>
             </div>
