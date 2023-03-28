@@ -2,8 +2,34 @@ import React, { Component } from 'react'
 import AppServices from '../services/app-services'
 import Cookies from 'js-cookie';
 import { decodeToken } from 'react-jwt';
+import Swal from 'sweetalert2';
 
 class ReservasComponent extends Component {
+
+    showLoading = () => {
+        Swal.fire({
+            title: 'Aguarde !',
+            html: 'Registrando reserva!',// add html attribute if you want or remove
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+            },
+        });
+    }
+
+    showAlertReservaRegister = () => {
+        Swal.fire({
+                    icon: 'success',
+					title: 'Reserva cadastrada com sucesso!',
+                    showConfirmButton: false,
+                    timerProgressBar: true,
+                    timer: 3000 
+						})	
+                        return;
+    }
+    
     constructor(props){
         super(props)
         this.state= {
@@ -62,8 +88,14 @@ class ReservasComponent extends Component {
             'id_usuario_reserva': myDecodedToken.user.id,
             'id_baia_reserva' : this.state.select1
         }
-        
+        this.showLoading();
         AppServices.saveReserva(reserva).then((res) =>{
+            if(res.statusText === "Created"){
+                Swal.close();
+                this.showAlertReservaRegister();
+                this.handleClearFields();
+                return;
+            }
             console.log(res);
         }).catch(error => {
             console.log(error);
@@ -72,6 +104,14 @@ class ReservasComponent extends Component {
 
 
     render() {
+        const minHora = '07:00';
+        const maxHora = '19:00';
+
+        const minData = new Date().toISOString().slice(0, 10);
+        const minDateTime = `${minData}T${minHora}`;
+
+        const maxData = '';
+        const maxDateTime = `${maxData}T${maxHora}`;
         const planta = require('../assets/img/planta.jpg');
         return (
             <div className='parent'>
@@ -94,6 +134,8 @@ class ReservasComponent extends Component {
                             name="dataInicio"
                             value={this.state.dataInicio}
                             onChange={this.changeDataInicioHandler}
+                            min={minDateTime}
+                            max={maxDateTime}
                         />
                         <label htmlFor="data">Fim da Reserva:</label>
                         <input
@@ -101,6 +143,8 @@ class ReservasComponent extends Component {
                             name="dataFim"
                             value={this.state.dataFim}
                             onChange={this.changeDataFimHandler}
+                            min={minDateTime}
+                            max={maxDateTime}
                         />
                         <br />
                     </div>
