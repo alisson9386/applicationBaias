@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Swal from 'sweetalert2';
 import useAuth from '../context/useAuth';
 import history from '../history';
-import BackService from '../services/baia-service'
+import BackService from '../services/app-services'
 
 const Toast = Swal.mixin({
     toast: true,

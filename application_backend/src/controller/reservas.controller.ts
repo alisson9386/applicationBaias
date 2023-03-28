@@ -22,6 +22,11 @@ export class ReservasController {
     return this.reservasService.findOne(+id);
   }
 
+  @Get('porBaia/:idBaia')
+  findReservByIdBaia(@Param('idBaia') idBaia: number){
+    return this.reservasService.findByIdBaia(idBaia)
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateReservaDto: UpdateReservaDto) {
     return this.reservasService.update(+id, updateReservaDto);

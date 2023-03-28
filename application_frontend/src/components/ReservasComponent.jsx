@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
+import AppServices from '../services/app-services'
+import Cookies from 'js-cookie';
+import { decodeToken } from 'react-jwt';
 
 class ReservasComponent extends Component {
     constructor(props){
         super(props)
         this.state= {
-            dataInicio: new Date(),
-            dataFim: new Date(),
+            dataInicio: '',
+            dataFim: '',
             select1: '',
-            select2: ''
+            select2: '',
+            baias:[]
         }
         this.changeDataInicioHandler = this.changeDataInicioHandler.bind(this);
         this.changeDataFimHandler = this.changeDataFimHandler.bind(this);
@@ -32,13 +36,38 @@ class ReservasComponent extends Component {
         this.setState({select2: event.target.value});
     }
 
+    handleClearFields = () => {
+        this.setState({
+          dataInicio: "",
+          dataFim: "",
+          select1: ""
+        });
+      }
+
     componentDidMount(){
+        AppServices.listBaia().then((res) =>{
+            this.setState({ baias: res.data });
+        }).catch(error => {
+            console.log(error);
+          });
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        // Aqui você pode fazer algo com os dados do formulário
-        console.log(this.state);
+        const token = Cookies.get('token');
+        const myDecodedToken = decodeToken(token);
+        const reserva = {
+            'periodo_inicio': this.state.dataInicio,
+            'periodo_fim': this.state.dataFim,
+            'id_usuario_reserva': myDecodedToken.user.id,
+            'id_baia_reserva' : this.state.select1
+        }
+        
+        AppServices.saveReserva(reserva).then((res) =>{
+            console.log(res);
+        }).catch(error => {
+            console.log(error);
+          });
       };
 
 
@@ -48,6 +77,16 @@ class ReservasComponent extends Component {
             <div className='parent'>
                 <div className='formReserva'>
                 <form onSubmit={this.handleSubmit}>
+                    <div className="form-group">
+                    <label htmlFor="select1">Estação de trabalho:</label>
+                        <select name="select1" value={this.state.select1} onChange={this.changeSelect1Handler}>
+                            <option value="">Selecione uma opção</option>
+                            {this.state.baias.map(baias => (
+                                <option key={baias.id} value={baias.id}>{baias.nome}</option>
+                            ))}
+                        </select>
+                        <br />
+                    </div>
                     <div className="form-group">
                     <label htmlFor="data">Inicio da Reserva:</label>
                         <input
@@ -65,17 +104,10 @@ class ReservasComponent extends Component {
                         />
                         <br />
                     </div>
-                    <div className="form-group">
-                    <label htmlFor="select1">Opção 1:</label>
-                        <select name="select1" value={this.state.select1} onChange={this.changeSelect1Handler}>
-                            <option value="">Selecione uma opção</option>
-                            <option value="opcao1">Opção 1</option>
-                            <option value="opcao2">Opção 2</option>
-                            <option value="opcao3">Opção 3</option>
-                        </select>
-                        <br />
+                    <div className='container'>
+                        <button type="submit" className="btn btn-primary mr-2">Salvar</button>
+                        <button type="button" className="btn btn-secondary ml-2" onClick={this.handleClearFields}>Limpar</button>
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
                 </div>
                 <div className='imgPlanta'>

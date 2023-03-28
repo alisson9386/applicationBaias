@@ -5,12 +5,10 @@ class UseAuth {
 
   handleLogin(data) {
     Cookies.set('token', data.token);
-    //localStorage.setItem('token', data.token);
   }
 
   handleLogout() {
     Cookies.remove('token');
-    //localStorage.removeItem('token');
     history.push('/');
   }
 

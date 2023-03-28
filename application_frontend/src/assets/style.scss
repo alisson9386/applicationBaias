@@ -141,16 +141,18 @@ a{
     width: 100%; 
     padding: 10px; 
     border-radius: 5px; 
-    text-align: center;
     display: block; 
     margin-bottom: 10px;
 }
 
-.formReserva button{
-    background-color: blue; 
-    color: white; 
-    padding: 10px 20px; 
-    border-radius: 5px; 
-    border: none;
+.formReserva button {
+    margin-right: 10px;
+}
+
+.container{
+    display: inline-block;
+}
+.btn-primary {
+    margin-right: 10px;
 }
   

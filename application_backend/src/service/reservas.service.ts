@@ -23,6 +23,10 @@ export class ReservasService {
     return this.reservaRepository.findOneBy({id : id});
   }
 
+  findByIdBaia(idBaia: number){
+    return this.reservaRepository.findBy({id_baia_reserva : idBaia})
+  }
+
   update(id: number, updateReservaDto: UpdateReservaDto) {
     return this.reservaRepository.update(id, updateReservaDto);
   }

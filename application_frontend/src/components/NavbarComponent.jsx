@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import history from '../history';
 import useAuth from '../context/useAuth';
-import { isExpired } from 'react-jwt';
+import { isExpired, decodeToken } from 'react-jwt';
 import Swal from 'sweetalert2';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -18,21 +18,44 @@ const Toast = Swal.mixin({
   });
 
 class NavbarComponent extends Component {
-
+    
     showAlertUserAuthenticated = () => {
         Toast.fire({
             icon: 'info',
             title: 'Acesso expirado, necessário refazer o login',
-						});	
+        });	
     }
+    
+    constructor(props){
+        super(props)
 
+        this.state = {
+            id:'',
+            tipo_user:'',
+            usuario:'',
+            nome:'',
+            setor_user:''
+        }
+    }
+    
     componentDidMount(){
         const token = Cookies.get('token');
+        const myDecodedToken = decodeToken(token);
         const isMyTokenExpired = isExpired(token);
         if(isMyTokenExpired){
             useAuth.handleLogout();
+        }else if(!isMyTokenExpired){
+            this.setState({id: myDecodedToken.user.id});
+            this.setState({tipo_user: myDecodedToken.user.tipo_user});
+            this.setState({usuario: myDecodedToken.user.usuario});
+            this.setState({nome: myDecodedToken.user.nome});
+            this.setState({setor_user: myDecodedToken.user.setor_user});
+            console.log(myDecodedToken)
+            console.log(this.state)
+
         }
     }
+
 
     logout(){
         useAuth.handleLogout();
@@ -40,6 +63,7 @@ class NavbarComponent extends Component {
     }
 
     render() {
+        const tipoUser = this.state.tipo_user;
         return (
             <Navbar bg="dark" expand="lg" variant="dark">
             <Container>
@@ -59,7 +83,7 @@ class NavbarComponent extends Component {
                     <NavDropdown title="Perfil" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Minhas Reservas</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Perfil</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                    {tipoUser === 1 ? (<NavDropdown.Item href="/admin">Admin</NavDropdown.Item>) : (<></>)}
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#" onClick={this.logout}>
                         Logout
