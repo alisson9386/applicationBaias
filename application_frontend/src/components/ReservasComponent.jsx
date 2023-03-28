@@ -4,17 +4,23 @@ class ReservasComponent extends Component {
     constructor(props){
         super(props)
         this.state= {
-            data: new Date(),
+            dataInicio: new Date(),
+            dataFim: new Date(),
             select1: '',
             select2: ''
         }
-        this.changeDataHandler = this.changeDataHandler.bind(this);
+        this.changeDataInicioHandler = this.changeDataInicioHandler.bind(this);
+        this.changeDataFimHandler = this.changeDataFimHandler.bind(this);
         this.changeSelect1Handler = this.changeSelect1Handler.bind(this);
         this.changeSelect2Handler = this.changeSelect2Handler.bind(this);
     }
 
-    changeDataHandler= (event) => {
-        this.setState({data: event.target.value});
+    changeDataInicioHandler= (event) => {
+        this.setState({dataInicio: event.target.value});
+    }
+
+    changeDataFimHandler= (event) => {
+        this.setState({dataFim: event.target.value});
     }
 
 
@@ -41,17 +47,26 @@ class ReservasComponent extends Component {
         return (
             <div className='parent'>
                 <div className='formReserva'>
-                    <form onSubmit={this.handleSubmit}>
-                        <label htmlFor="data">Data:</label>
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form-group">
+                    <label htmlFor="data">Inicio da Reserva:</label>
                         <input
                             type="datetime-local"
-                            name="dataHora"
-                            value={this.state.data}
-                            onChange={this.changeDataHandler}
+                            name="dataInicio"
+                            value={this.state.dataInicio}
+                            onChange={this.changeDataInicioHandler}
+                        />
+                        <label htmlFor="data">Fim da Reserva:</label>
+                        <input
+                            type="datetime-local"
+                            name="dataFim"
+                            value={this.state.dataFim}
+                            onChange={this.changeDataFimHandler}
                         />
                         <br />
-
-                        <label htmlFor="select1">Opção 1:</label>
+                    </div>
+                    <div className="form-group">
+                    <label htmlFor="select1">Opção 1:</label>
                         <select name="select1" value={this.state.select1} onChange={this.changeSelect1Handler}>
                             <option value="">Selecione uma opção</option>
                             <option value="opcao1">Opção 1</option>
@@ -59,18 +74,9 @@ class ReservasComponent extends Component {
                             <option value="opcao3">Opção 3</option>
                         </select>
                         <br />
-
-                        <label htmlFor="select2">Opção 2:</label>
-                        <select name="select2" value={this.state.select2} onChange={this.changeSelect2Handler}>
-                            <option value="">Selecione uma opção</option>
-                            <option value="opcao4">Opção 4</option>
-                            <option value="opcao5">Opção 5</option>
-                            <option value="opcao6">Opção 6</option>
-                        </select>
-                        <br />
-
-                        <button type="submit" className="btn">Enviar</button>
-                    </form>
+                    </div>
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </form>
                 </div>
                 <div className='imgPlanta'>
                     <img src={planta} alt='planta'/>
