@@ -6,10 +6,10 @@ import Swal from 'sweetalert2';
 
 class ReservasComponent extends Component {
 
-    showLoading = () => {
+    showLoading = (text) => {
         Swal.fire({
             title: 'Aguarde !',
-            html: 'Registrando reserva!',// add html attribute if you want or remove
+            html: text,// add html attribute if you want or remove
             allowOutsideClick: false,
             allowEscapeKey: false,
             timerProgressBar: true,
@@ -36,13 +36,11 @@ class ReservasComponent extends Component {
             dataInicio: '',
             dataFim: '',
             select1: '',
-            select2: '',
             baias:[]
         }
         this.changeDataInicioHandler = this.changeDataInicioHandler.bind(this);
         this.changeDataFimHandler = this.changeDataFimHandler.bind(this);
         this.changeSelect1Handler = this.changeSelect1Handler.bind(this);
-        this.changeSelect2Handler = this.changeSelect2Handler.bind(this);
     }
 
     changeDataInicioHandler= (event) => {
@@ -56,10 +54,6 @@ class ReservasComponent extends Component {
 
     changeSelect1Handler= (event) => {
         this.setState({select1: event.target.value});
-    }
-
-    changeSelect2Handler= (event) => {
-        this.setState({select2: event.target.value});
     }
 
     handleClearFields = () => {
@@ -88,7 +82,7 @@ class ReservasComponent extends Component {
             'id_usuario_reserva': myDecodedToken.user.id,
             'id_baia_reserva' : this.state.select1
         }
-        this.showLoading();
+        this.showLoading('Registrando reserva!');
         AppServices.saveReserva(reserva).then((res) =>{
             if(res.statusText === "Created"){
                 Swal.close();
@@ -102,6 +96,14 @@ class ReservasComponent extends Component {
           });
       };
 
+      buscarBaiasDisponiveis = () =>{
+        this.showLoading('Buscando mesas disponíveis');
+        AppServices.
+
+        console.log(this.state)
+
+      }
+
 
     render() {
         const minHora = '07:00';
@@ -112,22 +114,11 @@ class ReservasComponent extends Component {
 
         const maxData = '';
         const maxDateTime = `${maxData}T${maxHora}`;
-        const planta = require('../assets/img/planta.jpg');
         return (
             <div className='parent'>
                 <div className='formReserva'>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                    <label htmlFor="select1">Estação de trabalho:</label>
-                        <select name="select1" value={this.state.select1} onChange={this.changeSelect1Handler}>
-                            <option value="">Selecione uma opção</option>
-                            {this.state.baias.map(baias => (
-                                <option key={baias.id} value={baias.id}>{baias.nome}</option>
-                            ))}
-                        </select>
-                        <br />
-                    </div>
-                    <div className="form-group">
+                <form>
+                    <div>
                     <label htmlFor="data">Inicio da Reserva:</label>
                         <input
                             type="datetime-local"
@@ -146,16 +137,10 @@ class ReservasComponent extends Component {
                             min={minDateTime}
                             max={maxDateTime}
                         />
-                        <br />
-                    </div>
-                    <div className='container'>
-                        <button type="submit" className="btn btn-primary mr-2">Salvar</button>
+                        <button type="button" className="btn btn-primary mr-2" onClick={this.buscarBaiasDisponiveis}>Buscar</button>
                         <button type="button" className="btn btn-secondary ml-2" onClick={this.handleClearFields}>Limpar</button>
                     </div>
                 </form>
-                </div>
-                <div className='imgPlanta'>
-                    <img src={planta} alt='planta'/>
                 </div>
             </div>
         )

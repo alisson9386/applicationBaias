@@ -17,6 +17,11 @@ export class BaiaController {
     return this.baiaService.findAll();
   }
 
+  @Get()
+  findDisponiveisByDate(){
+    
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.baiaService.findOne(+id);

@@ -30,7 +30,7 @@ import { JwtMiddleware } from './auth/jwt.middleware';
       password: 'Z0rr0b@tmak',
       database: 'application_baias',
       entities: [User, Baia, Reserva, Setores, TipoUser],
-      synchronize: true,
+      synchronize: false,
     }), UsersModule, BaiaModule, ReservasModule, SetoresModule, TipoUsersModule
   ],
   controllers: [AppController],

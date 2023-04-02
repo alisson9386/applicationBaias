@@ -117,36 +117,19 @@ a{
   
 }
 .parent {
-    display: inline-block;
+    background-color: #212529;
+    color: white;
+    display: flex;
     justify-content: center;
-    align-items: center;
 }
 
-.formReserva{
-    margin: 150px;
-    float: left;
-    border: 1px solid black; 
-    border-radius: 5px; 
-    padding: 20px; 
-    background-color: white;
+.parent input, button{
+    margin-right: 10px;
 }
+
 
 .imgReserva{
     float: right;
-}
-
-.formReserva input, select{
-    display: block; 
-    margin-bottom: 20px; 
-    width: 100%; 
-    padding: 10px; 
-    border-radius: 5px; 
-    display: block; 
-    margin-bottom: 10px;
-}
-
-.formReserva button {
-    margin-right: 10px;
 }
 
 .container{

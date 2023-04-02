@@ -12,6 +12,7 @@ class BackService {
 
     //Serviços de Baias
     listBaia(){ return api_baias.get('/baia/'); }
+    listBaiasEmpty(dataInicio, dataFim){ return api_baias.get('baia/disponiveis/', dataInicio, dataFim)}
     listBaiaById(idBaia){ return api_baias.get('/baia/' + idBaia); }
     saveBaia(baia){ return api_baias.post('/baia/', baia); }
     updateBaia(baia, idBaia){ return api_baias.patch('/baia/' + idBaia, baia); }
