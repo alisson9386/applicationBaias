@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ReservaBaiasByDateDto } from 'src/dto/baia_dto/reservas-baia.dto';
 import { Repository } from 'typeorm';
 import { CreateBaiaDto } from '../dto/baia_dto/create-baia.dto';
 import { UpdateBaiaDto } from '../dto/baia_dto/update-baia.dto';
@@ -17,6 +18,17 @@ export class BaiaService {
 
   findAll() {
     return this.baiaRepository.find();
+  }
+
+  async findBaiaByDate(reservaBaiasByDateDto: ReservaBaiasByDateDto): Promise<Baia[]>{
+    const query = this.baiaRepository.createQueryBuilder('baia')
+    .leftJoin('reservas', 'reservas', 'reservas.id_baia_reserva = baia.id')
+    .where('reservas.periodo_inicio NOT BETWEEN :periodo_inicio AND :periodo_fim')
+    .orWhere('reservas.periodo_fim NOT BETWEEN :periodo_inicio AND :periodo_fim')
+    .setParameter('periodo_inicio', reservaBaiasByDateDto.periodo_inicio)
+    .setParameter('periodo_fim', reservaBaiasByDateDto.periodo_fim);
+
+    return await query.getMany();
   }
 
   findOne(id: number) {

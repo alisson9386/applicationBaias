@@ -50,8 +50,6 @@ class NavbarComponent extends Component {
             this.setState({usuario: myDecodedToken.user.usuario});
             this.setState({nome: myDecodedToken.user.nome});
             this.setState({setor_user: myDecodedToken.user.setor_user});
-            console.log(myDecodedToken)
-            console.log(this.state)
 
         }
     }

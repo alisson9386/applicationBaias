@@ -74,9 +74,9 @@ class ReservasComponent extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const token = Cookies.get('token');
-        const myDecodedToken = decodeToken(token);
-        const reserva = {
+        let token = Cookies.get('token');
+        let myDecodedToken = decodeToken(token);
+        var reserva = {
             'periodo_inicio': this.state.dataInicio,
             'periodo_fim': this.state.dataFim,
             'id_usuario_reserva': myDecodedToken.user.id,
@@ -98,10 +98,14 @@ class ReservasComponent extends Component {
 
       buscarBaiasDisponiveis = () =>{
         this.showLoading('Buscando mesas disponíveis');
-        AppServices.
-
-        console.log(this.state)
-
+        var periodos = {
+            'periodo_inicio': this.state.dataInicio,
+            'periodo_fim': this.state.dataFim
+        }
+        AppServices.listBaiasEmpty(periodos).then((res) =>{
+            console.log(res)
+            Swal.close();
+        })
       }
 
 
@@ -119,16 +123,17 @@ class ReservasComponent extends Component {
                 <div className='formReserva'>
                 <form>
                     <div>
-                    <label htmlFor="data">Inicio da Reserva:</label>
+                    <br/><br/>
+                    <label htmlFor="data" className="label-with-spacing">Inicio da Reserva:</label>
                         <input
                             type="datetime-local"
                             name="dataInicio"
                             value={this.state.dataInicio}
                             onChange={this.changeDataInicioHandler}
-                            min={minDateTime}
-                            max={maxDateTime}
+                            //min={minDateTime}
+                            //max={maxDateTime}
                         />
-                        <label htmlFor="data">Fim da Reserva:</label>
+                        <label htmlFor="data" className="label-with-spacing">Fim da Reserva:</label>
                         <input
                             type="datetime-local"
                             name="dataFim"
@@ -140,6 +145,7 @@ class ReservasComponent extends Component {
                         <button type="button" className="btn btn-primary mr-2" onClick={this.buscarBaiasDisponiveis}>Buscar</button>
                         <button type="button" className="btn btn-secondary ml-2" onClick={this.handleClearFields}>Limpar</button>
                     </div>
+                    <br/>
                 </form>
                 </div>
             </div>

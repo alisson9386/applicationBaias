@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { BaiaService } from '../service/baia.service';
 import { CreateBaiaDto } from '../dto/baia_dto/create-baia.dto';
 import { UpdateBaiaDto } from '../dto/baia_dto/update-baia.dto';
+import { ReservaBaiasByDateDto } from 'src/dto/baia_dto/reservas-baia.dto';
 
 @Controller('baia')
 export class BaiaController {
@@ -17,9 +18,9 @@ export class BaiaController {
     return this.baiaService.findAll();
   }
 
-  @Get()
-  findDisponiveisByDate(){
-    
+  @Post('baiaByDate')
+  findDisponiveisByDate(@Body() reservaBaiasByDateDto: ReservaBaiasByDateDto){
+    return this.baiaService.findBaiaByDate(reservaBaiasByDateDto);
   }
 
   @Get(':id')

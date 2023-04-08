@@ -120,7 +120,7 @@ a{
     background-color: #212529;
     color: white;
     display: flex;
-    justify-content: center;
+    //justify-content: center;
 }
 
 .parent input, button{
@@ -138,4 +138,12 @@ a{
 .btn-primary {
     margin-right: 10px;
 }
+
+.formReserva{
+    margin-left: 50px;
+}
   
+
+.label-with-spacing {
+  margin-right: 10px;
+}
