@@ -22,7 +22,7 @@ export class BaiaService {
 
   async findBaiaByDate(reservaBaiasByDateDto: ReservaBaiasByDateDto): Promise<Baia[]>{
     const query = this.baiaRepository.createQueryBuilder('baia')
-    .leftJoin('reservas', 'reservas', 'reservas.id_baia_reserva = baia.id')
+    .innerJoin('reservas', 'reservas', 'reservas.id_baia_reserva = baia.id')
     .where('reservas.periodo_inicio NOT BETWEEN :periodo_inicio AND :periodo_fim')
     .orWhere('reservas.periodo_fim NOT BETWEEN :periodo_inicio AND :periodo_fim')
     .setParameter('periodo_inicio', reservaBaiasByDateDto.periodo_inicio)

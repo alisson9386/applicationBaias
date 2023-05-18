@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import $ from 'jquery';
 
 class AdminComponent extends Component {
     constructor(props) {
@@ -9,11 +10,16 @@ class AdminComponent extends Component {
 	}
 
     componentDidMount(){
+        $('#myTab button').on('click', function (event) {
+            event.preventDefault();
+            $(this).tab('show');
+          });
     }
 
     render() {
         return (
-            <h1>Admin</h1>
+            <div>
+            </div>
         )
     }
 }
