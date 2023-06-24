@@ -27,6 +27,10 @@ export class ReservasService {
     return this.reservaRepository.findBy({id_baia_reserva : idBaia})
   }
 
+  findByIdUser(idUser: number){
+    return this.reservaRepository.findBy({id_usuario_reserva : idUser})
+  }
+
   update(id: number, updateReservaDto: UpdateReservaDto) {
     return this.reservaRepository.update(id, updateReservaDto);
   }

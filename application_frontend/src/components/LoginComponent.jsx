@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import useAuth from '../context/useAuth';
 import history from '../history';
 import BackService from '../services/app-services'
+import Button from 'react-bootstrap/Button';
 
 const Toast = Swal.mixin({
     toast: true,
@@ -87,7 +88,8 @@ class LoginComponent extends Component {
                     <label htmlFor="password">Senha</label>
                     <input type="password" id="senha" value={this.state.senha} onChange={this.changePasswordHandler} placeholder="Digite sua senha" />
                     {/* <a href="/">Esqueci minha senha</a> */}
-                    <input type="submit" onClick={this.loginExecute} value="Acessar" className="btn" />
+                    <Button onClick={this.loginExecute} className="btn">Acessar</Button>
+                    <Button onClick={this.loginExecute} className="btn btn-secondary ml-2">Registrar Usuário</Button>
                 </form>
             </div>
         )

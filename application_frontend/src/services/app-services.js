@@ -38,6 +38,7 @@ class BackService {
     saveReserva(reserva){ return api_baias.post('/reservas/', reserva); }
     updateReserva(reserva, idReserva){ return api_baias.patch('/reservas/' + idReserva, reserva); }
     deleteReserva(idReserva){ return api_baias.delete('/reservas/' + idReserva); }
+    listReservaByIdUser(idUser){return api_baias.get('/reservas/porUser/' + idUser); }
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export

@@ -4,7 +4,9 @@ class AboutComponent extends Component {
 
     render() {
         return (
-            <h3>Sobre</h3>
+            <div className='containerUsually'>
+                <h3>Sobre</h3>
+            </div>
         )
     }
 }

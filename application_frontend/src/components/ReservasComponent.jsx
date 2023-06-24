@@ -105,7 +105,9 @@ class ReservasComponent extends Component {
         AppServices.listBaiasEmpty(periodos).then((res) =>{
             console.log(res)
             Swal.close();
-        })
+        }).catch(error => {
+            console.log(error);
+          });
       }
 
 
