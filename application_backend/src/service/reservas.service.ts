@@ -28,7 +28,7 @@ export class ReservasService {
   }
 
   findByIdUser(idUser: number){
-    return this.reservaRepository.findBy({id_usuario_reserva : idUser})
+    return this.reservaRepository.findBy({id_usuario_reserva : idUser, fl_ativo: true})
   }
 
   update(id: number, updateReservaDto: UpdateReservaDto) {
