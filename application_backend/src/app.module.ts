@@ -40,8 +40,10 @@ export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
     .apply(JwtMiddleware)
-    .exclude({
-      path: 'users/login', method: RequestMethod.POST
-    }).forRoutes('*');
+    .exclude(
+      {path: 'users/login', method: RequestMethod.POST},
+      {path: 'users/user/:user', method: RequestMethod.GET},
+      {path: 'users/:id', method: RequestMethod.PATCH}
+    ).forRoutes('*');
   }
 }

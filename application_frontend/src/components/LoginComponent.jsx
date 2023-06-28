@@ -75,6 +75,10 @@ class LoginComponent extends Component {
         });
     }
 
+    toReplacePassword = () =>{
+        history.push('/replacePassword');
+    }
+
 
     render() {
 
@@ -89,7 +93,7 @@ class LoginComponent extends Component {
                     <input type="password" id="senha" value={this.state.senha} onChange={this.changePasswordHandler} placeholder="Digite sua senha" />
                     {/* <a href="/">Esqueci minha senha</a> */}
                     <Button onClick={this.loginExecute} className="btn">Acessar</Button>
-                    <Button onClick={this.loginExecute} className="btn btn-secondary ml-2">Registrar Usuário</Button>
+                    <Button onClick={this.toReplacePassword} className="btn btn-secondary ml-2">Esqueci minha senha</Button>
                 </form>
             </div>
         )

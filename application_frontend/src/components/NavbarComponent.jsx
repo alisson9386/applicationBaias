@@ -66,7 +66,7 @@ class NavbarComponent extends Component {
         return (
             <Navbar bg="dark" expand="lg" variant="dark">
             <Container>
-            <Navbar.Brand href="/index">Reservation</Navbar.Brand>
+            <Navbar.Brand href="/index">WorkSpots</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
@@ -74,7 +74,6 @@ class NavbarComponent extends Component {
 
                     <NavDropdown title="Reservas" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/reserv">Cadastrar Nova Reserva</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">Reservas agendadas</NavDropdown.Item>
                     </NavDropdown>
 
                     <Nav.Link href="/about">Sobre</Nav.Link>

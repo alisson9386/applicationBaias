@@ -9,6 +9,7 @@ class BackService {
     saveUser(user){ return api_baias.post('/users/', user); }
     updateUser(user, idUser){ return api_baias.patch('/users/' + idUser, user); }
     deleteUser(idUser){ return api_baias.delete('/users/' + idUser); }
+    getUser(user){return api_baias.get('/users/user/' + user); }
 
     //Serviços de Baias
     listBaia(){ return api_baias.get('/baia/'); }

@@ -31,7 +31,6 @@ class HomeComponent extends Component {
                     .then((res) => {
                       this.setState({ reservasUser: res.data });
                       this.setState({countReservas: res.data.length}, () =>{
-                        console.log(this.state);
                       })
                     })
                     .catch(error => {

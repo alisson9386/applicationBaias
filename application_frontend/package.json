@@ -11,6 +11,7 @@
     "cors": "^2.8.5",
     "date-fns": "^2.30.0",
     "dotenv": "^16.0.3",
+    "emailjs-com": "^3.2.0",
     "history": "4.10.1",
     "js-cookie": "^3.0.1",
     "konva": "^8.4.3",

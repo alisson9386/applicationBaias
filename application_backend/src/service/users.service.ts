@@ -25,6 +25,10 @@ export class UsersService {
     return this.userRepository.findOneBy({ id: id });
   }
 
+  findUser(user: string){
+    return this.userRepository.findOneBy({ usuario: user});
+  }
+
   async update(id: number, updateUserDto: UpdateUserDto) {
     updateUserDto.senha = await bcrypt.hash(updateUserDto.senha, 10);
     return this.userRepository.update(id, updateUserDto);

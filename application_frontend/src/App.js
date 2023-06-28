@@ -10,6 +10,7 @@ import AboutComponent from './components/AboutComponent';
 import ContactComponent from './components/ContactComponent';
 import ReservasComponent from './components/ReservasComponent';
 import AdminComponent from './components/AdminComponent';
+import ReplacePasswordComponent from './components/ReplacePasswordComponent';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
 				<Router history={history}>
 						<Switch>
 							<Route path="/" exact component={LoginComponent}/>
+							<Route path="/replacePassword" component={ReplacePasswordComponent}/>
 							<Route>
 								<NavbarComponent/>
 								<Switch>
