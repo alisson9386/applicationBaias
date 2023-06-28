@@ -61,7 +61,7 @@ class ReplacePasswordComponent extends Component {
         history.push("/");
     }
 
-    sendEmail = () =>{
+    sendEmailAndModifiedUser = () =>{
         const dadosUser = this.state.dadosUser;
         const randomPassword = Math.random().toString(36).substr(2, 8);
         dadosUser.senha = randomPassword;
@@ -90,12 +90,12 @@ class ReplacePasswordComponent extends Component {
            return true;
     }
 
-    recuperar = () =>{
+    replaceMain = () =>{
         this.showLoading('Enviando senha para o email cadastrado');
         let user = this.state.usuario;
         appServices.getUser(user).then((res)=>{
             this.setState({dadosUser: res.data}, () =>{
-                let confirmEmailAndPersist = this.sendEmail();
+                let confirmEmailAndPersist = this.sendEmailAndModifiedUser();
                 if(confirmEmailAndPersist){
                     this.showAlertEmailSend();
                 }else{
@@ -116,7 +116,7 @@ class ReplacePasswordComponent extends Component {
                     <p>Digite os dados necessários para recuperação</p>
                     <label htmlFor="usuario">Usuario</label>
                     <input type="text" id="usuario" placeholder="Digite seu usuario" value={this.state.usuario} onChange={this.changeUserHandler} />
-                    <Button onClick={this.recuperar} className="btn">Recuperar</Button>
+                    <Button onClick={this.replaceMain} className="btn">Recuperar</Button>
                    <Button onClick={this.toLogin} className="btn btn-secondary ml-2">Voltar</Button>
                 </form>
             </div>
