@@ -1,7 +1,7 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Baia } from "./baia.entity";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Baia } from './baia.entity';
 
-@Entity({name: 'reservas'})
+@Entity({ name: 'reservas' })
 export class Reserva {
   @PrimaryGeneratedColumn('increment')
   id: number;
@@ -15,10 +15,10 @@ export class Reserva {
   @Column()
   id_usuario_reserva: number;
 
-  @ManyToMany(() => Baia, baia => baia.id)
+  @ManyToMany(() => Baia, (baia) => baia.id)
   @Column()
   id_baia_reserva: number;
 
-  @Column({default: true})
+  @Column({ default: true })
   fl_ativo: boolean;
 }

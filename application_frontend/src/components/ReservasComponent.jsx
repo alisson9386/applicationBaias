@@ -125,7 +125,7 @@ class ReservasComponent extends Component {
                 <div className='formReserva'>
                 <form>
                     <div>
-                    <br/><br/>
+                    <br/><br/><br/><br/>
                     <label htmlFor="data" className="label-with-spacing">Inicio da Reserva:</label>
                         <input
                             type="datetime-local"

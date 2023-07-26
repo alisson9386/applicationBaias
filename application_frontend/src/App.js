@@ -11,6 +11,7 @@ import ContactComponent from './components/ContactComponent';
 import ReservasComponent from './components/ReservasComponent';
 import AdminComponent from './components/AdminComponent';
 import ReplacePasswordComponent from './components/ReplacePasswordComponent';
+import Layout from './components/Layout';
 
 function App() {
   return (
@@ -22,11 +23,13 @@ function App() {
 							<Route>
 								<NavbarComponent/>
 								<Switch>
+								<Layout>
 									<Route path="/index" component={HomeComponent}/>
 									<Route path="/reserv" component={ReservasComponent}/>
 									<Route path="/about" component={AboutComponent}/>
 									<Route path="/contact" component={ContactComponent}/>
 									<Route path="/admin" component={AdminComponent}/>
+								</Layout>
 								</Switch>
 							</Route>
 						</Switch>

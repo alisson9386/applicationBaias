@@ -149,7 +149,7 @@ a{
 }
 
 .containerCenter {
-    background-color: white;
+    color: white;
     width: 70%;
     margin: auto;
     justify-content: space-between;
@@ -159,10 +159,14 @@ a{
 }
 
 .containerUsually {
-    background-color: white;
+    color: white;
     width: 80%;
     margin: auto;
     justify-content: space-between;
     gap: 65px;
     padding: 45px 27px 30px 27px;
+}
+
+.table{
+    background-color: white;
 }

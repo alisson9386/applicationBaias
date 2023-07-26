@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Param, Delete, HttpException, HttpStatus, UseGuards, Put, Patch } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Patch,
+} from '@nestjs/common';
 import { UsersService } from '../service/users.service';
 import { CreateUserDto } from '../dto/user_dto/create-user.dto';
 import { UpdateUserDto } from '../dto/user_dto/update-user.dto';
@@ -9,7 +17,11 @@ import { AuthService } from 'src/auth/auth.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService, private readonly jwtService: JwtService, private readonly authService: AuthService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly jwtService: JwtService,
+    private readonly authService: AuthService,
+  ) {}
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
     return await this.usersService.create(createUserDto);
@@ -31,7 +43,7 @@ export class UsersController {
   }
 
   @Get('user/:user')
-  findUser(@Param('user') user: string){
+  findUser(@Param('user') user: string) {
     return this.usersService.findUser(user);
   }
 
@@ -43,6 +55,6 @@ export class UsersController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     const desactivate = this.usersService.desactivateUser(+id);
-    return desactivate ? "Usuário deletado" : "Erro ao deletar";
+    return desactivate ? 'Usuário deletado' : 'Erro ao deletar';
   }
 }

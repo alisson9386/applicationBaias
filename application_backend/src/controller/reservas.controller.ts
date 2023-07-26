@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ReservasService } from '../service/reservas.service';
 import { CreateReservaDto } from '../dto/reservas_dto/create-reserva.dto';
 import { UpdateReservaDto } from '../dto/reservas_dto/update-reserva.dto';
@@ -23,13 +31,13 @@ export class ReservasController {
   }
 
   @Get('porBaia/:idBaia')
-  findReservByIdBaia(@Param('idBaia') idBaia: number){
-    return this.reservasService.findByIdBaia(idBaia)
+  findReservByIdBaia(@Param('idBaia') idBaia: number) {
+    return this.reservasService.findByIdBaia(idBaia);
   }
 
   @Get('porUser/:idUser')
-  findReservByIdUser(@Param('idUser') idUser: number){
-    return this.reservasService.findByIdUser(idUser)
+  findReservByIdUser(@Param('idUser') idUser: number) {
+    return this.reservasService.findByIdUser(idUser);
   }
 
   @Patch(':id')
@@ -40,6 +48,6 @@ export class ReservasController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     const desactivate = this.reservasService.desactivateReserva(+id);
-    return desactivate ? "Reserva deletada" : "Erro ao deletar";
+    return desactivate ? 'Reserva deletada' : 'Erro ao deletar';
   }
 }

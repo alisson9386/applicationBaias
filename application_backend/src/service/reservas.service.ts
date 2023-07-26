@@ -20,15 +20,21 @@ export class ReservasService {
   }
 
   findOne(id: number) {
-    return this.reservaRepository.findOneBy({id : id});
+    return this.reservaRepository.findOneBy({ id: id });
   }
 
-  findByIdBaia(idBaia: number){
-    return this.reservaRepository.findBy({id_baia_reserva : idBaia})
+  findByIdBaia(idBaia: number) {
+    return this.reservaRepository.findBy({ id_baia_reserva: idBaia });
   }
 
-  findByIdUser(idUser: number){
-    return this.reservaRepository.findBy({id_usuario_reserva : idUser, fl_ativo: true})
+  findByIdUser(idUser: number) {
+    const today = new Date();
+    return this.reservaRepository
+      .createQueryBuilder('reserva')
+      .where('reserva.id_usuario_reserva = :idUser', { idUser })
+      .andWhere('reserva.fl_ativo = :flAtivo', { flAtivo: true })
+      .andWhere('reserva.periodo_fim >= :today', { today: today.toISOString() }) // Usando ISOString para compatibilidade
+      .getMany();
   }
 
   update(id: number, updateReservaDto: UpdateReservaDto) {
