@@ -62,7 +62,7 @@ class NavbarComponent extends Component {
 
     render() {
         const tipoUser = this.state.tipo_user;
-        const nomeUser = this.state.nome;
+        //const nomeUser = this.state.nome;
         return (
             <Navbar bg="dark" expand="lg" variant="dark">
             <Container>
@@ -82,7 +82,6 @@ class NavbarComponent extends Component {
                     <NavDropdown.Item href="#action/3.1">Minhas Reservas</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Perfil</NavDropdown.Item>
                     {tipoUser === 1 ? (<NavDropdown.Item href="/admin">Admin</NavDropdown.Item>) : (<></>)}
-                    <NavDropdown.Item href="#">{nomeUser}</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#" onClick={this.logout}>
                         Logout

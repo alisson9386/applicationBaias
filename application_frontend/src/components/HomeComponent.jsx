@@ -5,18 +5,79 @@ import { isExpired, decodeToken } from 'react-jwt';
 import appServices from '../services/app-services';
 import Badge from 'react-bootstrap/Badge';
 import moment from 'moment';
-import EarthCanvas from './canvas/Earth';
 import { BsFillTrashFill } from "react-icons/bs";
 import { BsPencilSquare } from "react-icons/bs";
+import Swal from 'sweetalert2';
+import AppServices from '../services/app-services'
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import DeskCanvas from './canvas/Desk';
 
 class HomeComponent extends Component {
+
+  showLoading = (text) => {
+    Swal.fire({
+        title: 'Aguarde !',
+        html: text,// add html attribute if you want or remove
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading()
+        },
+    });
+}
+
+deleteStatus = (confirm) =>{
+  if(confirm){
+    this.componentDidMount();
+    Swal.fire(
+      'Excluído!',
+      'Sua reserva foi excluída.',
+      'success'
+    )
+  }else{
+    Swal.fire(
+      'Erro ao excluir!',
+      'Contate um administrador!',
+      'error'
+    )
+  }
+}
+
+  confirmDelete = (idReserva) =>{
+    Swal.fire({
+      title: 'Deseja deletar essa reserva?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, excluir!',
+      cancelButtonText: 'Cancelar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.serviceDelete(idReserva);
+      }
+    })
+  }
+
+
   constructor(props) {
     super(props);
     this.state = {
+      showModal: false,
       idUser: 0,
       countReservas: 0,
       reservasUser: {}
     };
+  }
+
+  handleClose = () => {
+      this.setState({showModal: false});
+  }
+
+  handleShow  = () => {
+    this.setState({showModal: true});
   }
 
   componentDidMount() {
@@ -42,7 +103,32 @@ class HomeComponent extends Component {
     }
   }
 
+  handleEditaReserva = () =>{
+    this.handleShow();
+
+  }
+
+  handleDeleteReserva = (idReserva) =>{
+    this.confirmDelete(idReserva);
+  }
+
+  serviceDelete = (idReserva) =>{
+    this.showLoading('Excluindo');
+    AppServices.deleteReserva(idReserva).then((res) =>{
+      if(res.data === 'Reserva deletada'){
+        var confirm = true;
+        this.deleteStatus(confirm)
+      }
+    }).catch(error => {
+      console.log(error);
+      var confirm = false;
+      this.deleteStatus(confirm)
+    });
+  }
+
+  
   render() {
+    const temReserva = this.state.reservasUser.length > 0 ? true : false;
     return (
       <div>
         <div className='containerUsually'>
@@ -53,53 +139,67 @@ class HomeComponent extends Component {
           </div>
           <div className='row'>
             <div className='col-sm-6'>
-              <h4>Suas reservas</h4>
-              <table className='table table-dark table-striped table-bordered text-center'>
-                <thead>
-                  <tr>
-                    <th>Mesa reservada</th>
-                    <th>Período inicio</th>
-                    <th>Período fim</th>
-                    <th>Ações</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.entries(this.state.reservasUser).map(([key, data]) => (
-                    <tr key={key}>
-                      <td>
-                        <Badge>{data.id_baia_reserva}</Badge>
-                      </td>
-                      <td>
-                        <label variant='primary'>{moment(data.periodo_inicio).format('DD/MM/yyyy HH:mm')}</label>
-                      </td>
-                      <td>
-                        <label variant='primary'>{moment(data.periodo_fim).format('DD/MM/yyyy HH:mm')}</label>
-                      </td>
-                      <td>
-                      <button
-                          className='btn btn-danger'
-                          //onClick={() => this.handleDeleteReserva(data.id)} 
-                        >
-                          <BsFillTrashFill />
-                        </button>
-                        {" "}
-                      <button
-                          className='btn btn-warning'
-                          //onClick={() => this.handleDeleteReserva(data.id)} 
-                        >
-                          <BsPencilSquare />
-                        </button>
-                      </td>
+              {temReserva ? 
+              <><h4>Suas reservas</h4><table className='table table-dark table-striped table-bordered text-center'>
+                  <thead>
+                    <tr>
+                      <th>Mesa reservada</th>
+                      <th>Período inicio</th>
+                      <th>Período fim</th>
+                      <th>Ações</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {Object.entries(this.state.reservasUser).map(([key, data]) => (
+                      <tr key={key}>
+                        <td>
+                          <Badge>{data.id_baia_reserva}</Badge>
+                        </td>
+                        <td>
+                          <label variant='primary'>{moment(data.periodo_inicio).format('DD/MM/yyyy HH:mm')}</label>
+                        </td>
+                        <td>
+                          <label variant='primary'>{moment(data.periodo_fim).format('DD/MM/yyyy HH:mm')}</label>
+                        </td>
+                        <td>
+                          <button title="Editar"
+                            className='btn btn-warning'
+                            onClick={() => this.handleEditaReserva(data.id)}
+                          >
+                            <BsPencilSquare />
+                          </button>
+                          {" "}
+                          <button title="Excluir"
+                            className='btn btn-danger'
+                            onClick={() => this.handleDeleteReserva(data.id)}
+                          >
+                            <BsFillTrashFill />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table></>
+               : <h4>Você não possui reservas</h4>     }
             </div>
             <div className='col-sm-6'>
-              <EarthCanvas />
+              <DeskCanvas/>
             </div>
           </div>
         </div>
+        <Modal className='modal' show={this.state.showModal} onHide={this.handleClose}>
+                        <Modal.Header closeButton>
+                        <Modal.Title>Editar reserva</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                        </Modal.Body>
+                        <Modal.Footer>
+                        <Button variant="primary" id="termosButton" data-toggle="modal" /*onClick={() => {this.handleClose(); this.handleAceitarTerminos();}}*/>Salvar</Button>
+                        <Button variant="secondary" onClick={this.handleClose}>
+                        Cancelar
+                        </Button>
+                        </Modal.Footer>
+                    </Modal>
       </div>
     );
   }

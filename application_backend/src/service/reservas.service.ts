@@ -44,7 +44,7 @@ export class ReservasService {
   async desactivateReserva(id: number): Promise<boolean> {
     const reserva = await this.reservaRepository.findOneBy({ id: id });
     reserva.fl_ativo = false;
-    const save = await this.reservaRepository.save(reserva);
+    const save = await this.reservaRepository.update(id, reserva);
     return save ? true : false;
   }
 }
