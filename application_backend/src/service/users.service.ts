@@ -20,13 +20,13 @@ export class UsersService {
   findAll() {
     return this.userRepository.find();
   }
-  
+
   findOne(id: number) {
     return this.userRepository.findOneBy({ id: id });
   }
 
-  findUser(user: string){
-    return this.userRepository.findOneBy({ usuario: user});
+  findUser(user: string) {
+    return this.userRepository.findOneBy({ usuario: user });
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
@@ -42,9 +42,9 @@ export class UsersService {
   }
 
   async validateUser(usuario: string, senha: string) {
-    const user = await this.userRepository.findOneBy({usuario: usuario});
+    const user = await this.userRepository.findOneBy({ usuario: usuario });
 
-    if (user && await bcrypt.compare(senha, user.senha)) {
+    if (user && (await bcrypt.compare(senha, user.senha))) {
       const { senha, ...result } = user;
       return result;
     }

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { TipoUsersService } from '../service/tipo-users.service';
 import { CreateTipoUserDto } from '../dto/tipouser_dto/create-tipo-user.dto';
 import { UpdateTipoUserDto } from '../dto/tipouser_dto/update-tipo-user.dto';
@@ -23,13 +31,16 @@ export class TipoUsersController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTipoUserDto: UpdateTipoUserDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateTipoUserDto: UpdateTipoUserDto,
+  ) {
     return this.tipoUsersService.update(+id, updateTipoUserDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
     const desactivate = this.tipoUsersService.desactivateTipoUser(+id);
-    return desactivate ? "Tipo deletado" : "Erro ao deletar";
+    return desactivate ? 'Tipo deletado' : 'Erro ao deletar';
   }
 }

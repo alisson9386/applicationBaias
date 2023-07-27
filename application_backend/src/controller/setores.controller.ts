@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { SetoresService } from '../service/setores.service';
 import { CreateSetoreDto } from '../dto/setores_dto/create-setore.dto';
 import { UpdateSetoreDto } from '../dto/setores_dto/update-setore.dto';
@@ -30,6 +38,6 @@ export class SetoresController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     const desactivate = this.setoresService.desactivateSetor(+id);
-    return desactivate ? "Setor deletado" : "Erro ao deletar";
+    return desactivate ? 'Setor deletado' : 'Erro ao deletar';
   }
 }

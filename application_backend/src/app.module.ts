@@ -1,4 +1,5 @@
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -17,21 +18,27 @@ import { JwtMiddleware } from './auth/jwt.middleware';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     JwtModule.register({
       secret: 'zaq12wsxZAQ!@WSXZ0rr0b@tmak',
       signOptions: { expiresIn: '30m' },
     }),
-    UsersModule, 
+    UsersModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: process.env.DATABASE_HOST,
       port: 3306,
-      username: 'root',
-      password: 'Z0rr0b@tmak',
-      database: 'application_baias',
+      username: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_DATABASE,
       entities: [User, Baia, Reserva, Setores, TipoUser],
       synchronize: false,
-    }), UsersModule, BaiaModule, ReservasModule, SetoresModule, TipoUsersModule
+    }),
+    UsersModule,
+    BaiaModule,
+    ReservasModule,
+    SetoresModule,
+    TipoUsersModule,
   ],
   controllers: [AppController],
   providers: [AppService, JwtMiddleware],
@@ -39,11 +46,12 @@ import { JwtMiddleware } from './auth/jwt.middleware';
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-    .apply(JwtMiddleware)
-    .exclude(
-      {path: 'users/login', method: RequestMethod.POST},
-      {path: 'users/user/:user', method: RequestMethod.GET},
-      {path: 'users/:id', method: RequestMethod.PATCH}
-    ).forRoutes('*');
+      .apply(JwtMiddleware)
+      .exclude(
+        { path: 'users/login', method: RequestMethod.POST },
+        { path: 'users/user/:user', method: RequestMethod.GET },
+        { path: 'users/:id', method: RequestMethod.PATCH },
+      )
+      .forRoutes('*');
   }
 }

@@ -20,7 +20,7 @@ export class TipoUsersService {
   }
 
   findOne(id: number) {
-    return this.tipoUserRepository.findOneBy({id : id});
+    return this.tipoUserRepository.findOneBy({ id: id });
   }
 
   update(id: number, updateTipoUserDto: UpdateTipoUserDto) {

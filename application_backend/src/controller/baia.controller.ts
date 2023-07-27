@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { BaiaService } from '../service/baia.service';
 import { CreateBaiaDto } from '../dto/baia_dto/create-baia.dto';
 import { UpdateBaiaDto } from '../dto/baia_dto/update-baia.dto';
@@ -19,7 +27,7 @@ export class BaiaController {
   }
 
   @Post('baiaByDate')
-  findDisponiveisByDate(@Body() reservaBaiasByDateDto: ReservaBaiasByDateDto){
+  findDisponiveisByDate(@Body() reservaBaiasByDateDto: ReservaBaiasByDateDto) {
     return this.baiaService.findBaiaByDate(reservaBaiasByDateDto);
   }
 
@@ -36,6 +44,6 @@ export class BaiaController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     const desactivate = this.baiaService.desactivateBaia(+id);
-    return desactivate ? "Baia deletada" : "Erro ao deletar";
+    return desactivate ? 'Baia deletada' : 'Erro ao deletar';
   }
 }

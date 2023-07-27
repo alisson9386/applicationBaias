@@ -20,7 +20,7 @@ export class SetoresService {
   }
 
   findOne(id: number) {
-    return this.setoresRepository.findOneBy({id : id});
+    return this.setoresRepository.findOneBy({ id: id });
   }
 
   update(id: number, updateSetoreDto: UpdateSetoreDto) {

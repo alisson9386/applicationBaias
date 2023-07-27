@@ -1,6 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({name : 'setores'})
+@Entity({ name: 'setores' })
 export class Setores {
   @PrimaryGeneratedColumn('increment')
   id: number;
@@ -10,7 +10,7 @@ export class Setores {
 
   @Column()
   id_gerente: number;
-  
-  @Column({default: true})
+
+  @Column({ default: true })
   fl_ativo: boolean;
 }

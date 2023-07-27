@@ -1,6 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({name: 'tipo_usuarios'})
+@Entity({ name: 'tipo_usuarios' })
 export class TipoUser {
   @PrimaryGeneratedColumn('increment')
   id: number;
@@ -8,6 +8,6 @@ export class TipoUser {
   @Column()
   tipo: string;
 
-  @Column({default: true})
+  @Column({ default: true })
   fl_ativo: boolean;
 }

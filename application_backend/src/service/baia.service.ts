@@ -13,26 +13,33 @@ export class BaiaService {
     private baiaRepository: Repository<Baia>,
   ) {}
   create(createBaiaDto: CreateBaiaDto) {
-    return this.baiaRepository.save(createBaiaDto)
+    return this.baiaRepository.save(createBaiaDto);
   }
 
   findAll() {
     return this.baiaRepository.find();
   }
 
-  async findBaiaByDate(reservaBaiasByDateDto: ReservaBaiasByDateDto): Promise<Baia[]>{
-    const query = this.baiaRepository.createQueryBuilder('baia')
-    .leftJoin('reservas', 'reservas', 'reservas.id_baia_reserva = baia.id')
-    .where('reservas.periodo_inicio NOT BETWEEN :periodo_inicio AND :periodo_fim')
-    .orWhere('reservas.periodo_fim NOT BETWEEN :periodo_inicio AND :periodo_fim')
-    .setParameter('periodo_inicio', reservaBaiasByDateDto.periodo_inicio)
-    .setParameter('periodo_fim', reservaBaiasByDateDto.periodo_fim);
+  async findBaiaByDate(
+    reservaBaiasByDateDto: ReservaBaiasByDateDto,
+  ): Promise<Baia[]> {
+    const query = this.baiaRepository
+      .createQueryBuilder('baia')
+      .leftJoin('reservas', 'reservas', 'reservas.id_baia_reserva = baia.id')
+      .where(
+        'reservas.periodo_inicio NOT BETWEEN :periodo_inicio AND :periodo_fim',
+      )
+      .orWhere(
+        'reservas.periodo_fim NOT BETWEEN :periodo_inicio AND :periodo_fim',
+      )
+      .setParameter('periodo_inicio', reservaBaiasByDateDto.periodo_inicio)
+      .setParameter('periodo_fim', reservaBaiasByDateDto.periodo_fim);
 
     return await query.getMany();
   }
 
   findOne(id: number) {
-    return this.baiaRepository.findOneBy({id : id});
+    return this.baiaRepository.findOneBy({ id: id });
   }
 
   update(id: number, updateBaiaDto: UpdateBaiaDto) {

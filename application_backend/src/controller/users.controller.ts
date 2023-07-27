@@ -12,7 +12,6 @@ import { CreateUserDto } from '../dto/user_dto/create-user.dto';
 import { UpdateUserDto } from '../dto/user_dto/update-user.dto';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from 'src/dto/login_dto/login.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { AuthService } from 'src/auth/auth.service';
 
 @Controller('users')

@@ -1,8 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'baia' })
 export class Baia {
-
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -12,6 +11,6 @@ export class Baia {
   @Column()
   andar: number;
 
-  @Column({default: true})
+  @Column({ default: true })
   fl_ativo: boolean;
 }

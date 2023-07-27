@@ -7,7 +7,7 @@ export class User {
 
   @Column()
   nome: string;
-  
+
   @Column()
   usuario: string;
 
@@ -26,6 +26,6 @@ export class User {
   @Column()
   setor_user: number;
 
-  @Column({default: true})
+  @Column({ default: true })
   fl_ativo: boolean;
 }

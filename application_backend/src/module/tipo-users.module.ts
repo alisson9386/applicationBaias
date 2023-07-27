@@ -7,6 +7,6 @@ import { TipoUser } from '../entities/tipo-user.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([TipoUser])],
   controllers: [TipoUsersController],
-  providers: [TipoUsersService]
+  providers: [TipoUsersService],
 })
 export class TipoUsersModule {}
