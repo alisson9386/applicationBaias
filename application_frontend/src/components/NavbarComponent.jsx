@@ -74,12 +74,11 @@ class NavbarComponent extends Component {
 
                     <NavDropdown title="Reservas" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/reserv">Cadastrar Nova Reserva</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.1">Minhas Reservas</NavDropdown.Item>
                     </NavDropdown>
 
                     <Nav.Link href="/about">Sobre</Nav.Link>
-                    <Nav.Link href="/contact">Contact</Nav.Link>
                     <NavDropdown title="Perfil" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Minhas Reservas</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Perfil</NavDropdown.Item>
                     {tipoUser === 1 ? (<NavDropdown.Item href="/admin">Admin</NavDropdown.Item>) : (<></>)}
                     <NavDropdown.Divider />

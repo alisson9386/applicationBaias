@@ -5,10 +5,10 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
 const Desk = () => {
-    const desk = useGLTF("./hack/scene.gltf");
+    const desk = useGLTF("./office_computer/scene.gltf");
   
     return (
-      <primitive object={desk.scene} scale={6.0} position-y={-8} rotation-y={0} />
+      <primitive object={desk.scene} scale={0.07} position-y={-2} rotation-y={5} />
     );
 };
 
@@ -40,8 +40,10 @@ const DeskCanvas = () => {
           <Suspense fallback={<CanvasLoader />}>
             <OrbitControls
               enableRotate={true}
-              autoRotate={false}
+              autoRotate={true}
               enableZoom={false}
+              maxPolarAngle={Math.PI / 2.5}
+            minPolarAngle={Math.PI / 2.5}
             />
             <Desk />
   

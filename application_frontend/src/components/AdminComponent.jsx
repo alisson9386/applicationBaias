@@ -13,7 +13,11 @@ class AdminComponent extends Component {
 
     render() {
         return (
-            <h1>Admin</h1>
+            <div>
+                <br/><br/>
+                <h1>Admin</h1>
+
+            </div>
         )
     }
 }
