@@ -121,36 +121,35 @@ class ReservasComponent extends Component {
         const maxData = '';
         const maxDateTime = `${maxData}T${maxHora}`;
         return (
-            <div className='parent'>
-                <div className='formReserva'>
-                <form>
-                    <div>
-                    <br/><br/><br/><br/>
-                    <label htmlFor="data" className="label-with-spacing">Inicio da Reserva:</label>
-                        <input
-                            type="datetime-local"
-                            name="dataInicio"
-                            value={this.state.dataInicio}
-                            onChange={this.changeDataInicioHandler}
-                            //min={minDateTime}
-                            //max={maxDateTime}
-                        />
-                        <label htmlFor="data" className="label-with-spacing">Fim da Reserva:</label>
-                        <input
-                            type="datetime-local"
-                            name="dataFim"
-                            value={this.state.dataFim}
-                            onChange={this.changeDataFimHandler}
-                            min={minDateTime}
-                            max={maxDateTime}
-                        />
-                        <button type="button" className="btn btn-primary mr-2" onClick={this.buscarBaiasDisponiveis}>Buscar</button>
-                        <button type="button" className="btn btn-secondary ml-2" onClick={this.handleClearFields}>Limpar</button>
-                    </div>
-                    <br/>
+            <><br/><br/><br/><br/>
+            <div className="divReserv">
+            <form method="POST" className="formLogin">
+                    <h3>Agendar reserva</h3>
+                        <div className="form-group">
+                            <label htmlFor="data" className="label-with-spacing">Inicio da Reserva:</label>
+                            <input
+                                type="datetime-local"
+                                name="dataInicio"
+                                value={this.state.dataInicio}
+                                onChange={this.changeDataInicioHandler} />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="data" className="label-with-spacing">Fim da Reserva:</label>
+                            <input
+                                type="datetime-local"
+                                name="dataFim"
+                                value={this.state.dataFim}
+                                onChange={this.changeDataFimHandler}
+                                min={minDateTime}
+                                max={maxDateTime} />
+                        </div>
+                        <div className="form-group">
+                            <button type="button" className="btn btn-primary mr-2" onClick={this.buscarBaiasDisponiveis}>Buscar</button>
+                            {" "}
+                            <button type="button" className="btn btn-secondary ml-2" onClick={this.handleClearFields}>Limpar</button>
+                        </div>
                 </form>
-                </div>
-            </div>
+            </div></>
         )
     }
 }

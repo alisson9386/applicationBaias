@@ -12,20 +12,6 @@ import AppServices from '../services/app-services'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import ChairCanvas from './canvas/Chair';
-import backgroundImage from '../assets/img/office5.jpg'; 
-
-const estiloDeFundo = {
-  backgroundImage: `url(${backgroundImage})`,
-  backgroundSize: 'cover', // Para ajustar a imagem ao tamanho do contêiner
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'center center',
-  width: '100vw', // Largura igual à largura da viewport
-  height: '100vh', // Altura igual à altura da viewport
-  position: 'fixed', // Posição fixa para cobrir a tela inteira
-  top: 0,
-  left: 0,
-  zIndex: -1, // Para colocar o elemento atrás dos outros conteúdos
-};
 
 class HomeComponent extends Component {
   
@@ -144,9 +130,9 @@ deleteStatus = (confirm) =>{
   render() {
     const temReserva = this.state.reservasUser.length > 0 ? true : false;
     return (
-      <div style={estiloDeFundo}>
+      <div>
         <div className='containerUsually'>
-          <div className='containerUsually'>
+          <div className='containerCenter'>
             <h1 className='display-4'>WorkSpots</h1>
             <p className='lead'>Escolha seu espaço. Liberdade para trabalhar.</p>
             <br />

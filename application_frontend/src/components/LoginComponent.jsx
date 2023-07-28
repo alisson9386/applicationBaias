@@ -4,6 +4,7 @@ import useAuth from '../context/useAuth';
 import history from '../history';
 import BackService from '../services/app-services'
 import Button from 'react-bootstrap/Button';
+import Cookies from 'js-cookie';
 
 const Toast = Swal.mixin({
     toast: true,
@@ -23,7 +24,7 @@ class LoginComponent extends Component {
     showAlertErrorLogin = (err) => {
         Swal.fire({
                     icon: 'error',
-					title: 'Erro no login',
+					title: 'Falha no login',
                     html: err.response.data.message,
 						})	
     }
@@ -77,6 +78,13 @@ class LoginComponent extends Component {
 
     toReplacePassword = () =>{
         history.push('/replacePassword');
+    }
+
+    componentDidMount() {
+        const token = Cookies.get('token');
+        if(token != null){
+            history.push('/index');
+        }
     }
 
 

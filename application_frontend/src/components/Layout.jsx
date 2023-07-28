@@ -1,5 +1,5 @@
 import React from 'react';
-import backgroundImage from '../assets/img/office5.jpg'; // Substitua pelo caminho correto da sua imagem
+import backgroundImage from '../assets/img/office.jpg'; // Substitua pelo caminho correto da sua imagem
 
 const Layout = ({ children }) => {
   const estiloDeFundo = {
