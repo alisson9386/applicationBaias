@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import MapCanvas from './canvas/PreviewMap';
+import DeskCanvas from './canvas/Desk';
 
 class AboutComponent extends Component {
 
@@ -7,7 +7,7 @@ class AboutComponent extends Component {
         return (
             <div>
                 <h3>Sobre</h3>
-                <MapCanvas/>
+                <DeskCanvas/>
             </div>
         )
     }

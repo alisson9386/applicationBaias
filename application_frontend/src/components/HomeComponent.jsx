@@ -11,10 +11,24 @@ import Swal from 'sweetalert2';
 import AppServices from '../services/app-services'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import DeskCanvas from './canvas/Desk';
+import ChairCanvas from './canvas/Chair';
+import backgroundImage from '../assets/img/office5.jpg'; 
+
+const estiloDeFundo = {
+  backgroundImage: `url(${backgroundImage})`,
+  backgroundSize: 'cover', // Para ajustar a imagem ao tamanho do contêiner
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'center center',
+  width: '100vw', // Largura igual à largura da viewport
+  height: '100vh', // Altura igual à altura da viewport
+  position: 'fixed', // Posição fixa para cobrir a tela inteira
+  top: 0,
+  left: 0,
+  zIndex: -1, // Para colocar o elemento atrás dos outros conteúdos
+};
 
 class HomeComponent extends Component {
-
+  
   showLoading = (text) => {
     Swal.fire({
         title: 'Aguarde !',
@@ -130,9 +144,9 @@ deleteStatus = (confirm) =>{
   render() {
     const temReserva = this.state.reservasUser.length > 0 ? true : false;
     return (
-      <div>
+      <div style={estiloDeFundo}>
         <div className='containerUsually'>
-          <div className='containerCenter'>
+          <div className='containerUsually'>
             <h1 className='display-4'>WorkSpots</h1>
             <p className='lead'>Escolha seu espaço. Liberdade para trabalhar.</p>
             <br />
@@ -183,7 +197,7 @@ deleteStatus = (confirm) =>{
                : <h4>Você não possui reservas</h4>     }
             </div>
             <div className='col-sm-6'>
-              <DeskCanvas/>
+              <ChairCanvas/>
             </div>
           </div>
         </div>

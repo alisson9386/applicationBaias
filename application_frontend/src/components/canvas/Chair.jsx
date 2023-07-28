@@ -4,20 +4,20 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
 
-const Desk = () => {
-    const desk = useGLTF("./office_computer/scene.gltf");
+const Chair = () => {
+    const chair = useGLTF("./office_chair/scene.gltf");
   
     return (
-      <primitive object={desk.scene} scale={0.07} position-y={-2} rotation-y={5} />
+      <primitive object={chair.scene} scale={11.5} position-y={-6} rotation-y={5} />
     );
 };
 
-const DeskCanvas = () => {
+const ChairCanvas = () => {
     return (
       <div
         style={{
-          width: "50%", // Ajuste a largura para ocupar metade da tela
-          height: "70%",
+          width: "60%", // Ajuste a largura para ocupar metade da tela
+          height: "80%",
           position: "absolute", // Adicione position relative
           zIndex: 1, // Defina um valor para o z-index
         }}
@@ -39,11 +39,14 @@ const DeskCanvas = () => {
         <directionalLight color="white" intensity={1} position={[5, 10, 2]} castShadow />
           <Suspense fallback={<CanvasLoader />}>
             <OrbitControls
+              autoRotate
+              autoRotateSpeed={5.0}
               enableRotate={true}
-              autoRotate={false}
               enableZoom={false}
+              maxPolarAngle={Math.PI / 2.2}
+              minPolarAngle={Math.PI / 2.2}
             />
-            <Desk />
+            <Chair />
   
             <Preload all />
           </Suspense>
@@ -52,4 +55,4 @@ const DeskCanvas = () => {
     );
   };
   
-  export default DeskCanvas;
+  export default ChairCanvas;

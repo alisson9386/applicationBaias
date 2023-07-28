@@ -13,7 +13,7 @@
     "bootstrap-icons": "^1.10.5",
     "cors": "^2.8.5",
     "date-fns": "^2.30.0",
-    "dotenv": "^16.0.3",
+    "dotenv": "^16.3.1",
     "emailjs-com": "^3.2.0",
     "history": "4.10.1",
     "js-cookie": "^3.0.1",
@@ -38,7 +38,8 @@
     "sweetalert2": "^11.7.2",
     "three": "^0.154.0",
     "validator": "^13.9.0",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yarn": "^1.22.19"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -63,5 +64,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "license": "MIT"
 }
