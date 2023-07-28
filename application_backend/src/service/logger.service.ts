@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as winston from 'winston';
 
 @Injectable()
-export class LogService {
+export class LoggerService {
   private logger: winston.Logger;
 
   constructor() {

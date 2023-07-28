@@ -15,6 +15,9 @@ import { Setores } from './entities/setores.entity';
 import { TipoUser } from './entities/tipo-user.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtMiddleware } from './auth/jwt.middleware';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { LoggingInterceptor } from './logging.interceptor';
+import { LoggerService } from './service/logger.service';
 
 @Module({
   imports: [
@@ -41,7 +44,12 @@ import { JwtMiddleware } from './auth/jwt.middleware';
     TipoUsersModule,
   ],
   controllers: [AppController],
-  providers: [AppService, JwtMiddleware],
+  providers: [
+    AppService,
+    JwtMiddleware,
+    { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
+    LoggerService,
+  ],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

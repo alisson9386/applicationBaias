@@ -6,6 +6,8 @@ import {
   Param,
   Delete,
   Patch,
+  HttpStatus,
+  NotFoundException,
 } from '@nestjs/common';
 import { UsersService } from '../service/users.service';
 import { CreateUserDto } from '../dto/user_dto/create-user.dto';
@@ -13,12 +15,10 @@ import { UpdateUserDto } from '../dto/user_dto/update-user.dto';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from 'src/dto/login_dto/login.dto';
 import { AuthService } from 'src/auth/auth.service';
-import { LogService } from '../service/log.service';
 
 @Controller('users')
 export class UsersController {
   constructor(
-    private readonly logService: LogService,
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
     private readonly authService: AuthService,
@@ -30,9 +30,6 @@ export class UsersController {
 
   @Post('login')
   async login(@Body() loginDto: LoginDto) {
-    this.logService.log(
-      `Login sendo realizado pelo usuário ${loginDto.usuario}`,
-    );
     return await this.authService.authLogin(loginDto);
   }
 
@@ -57,8 +54,19 @@ export class UsersController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    const desactivate = this.usersService.desactivateUser(+id);
-    return desactivate ? 'Usuário deletado' : 'Erro ao deletar';
+  async remove(@Param('id') id: string) {
+    try {
+      const result = await this.usersService.desactivateUser(+id);
+      return { message: result.message };
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        return { message: error.message, statusCode: HttpStatus.NOT_FOUND };
+      } else {
+        return {
+          message: 'Erro ao deletar',
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        };
+      }
+    }
   }
 }
