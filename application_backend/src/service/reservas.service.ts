@@ -27,14 +27,19 @@ export class ReservasService {
     return this.reservaRepository.findBy({ id_baia_reserva: idBaia });
   }
 
-  findByIdUser(idUser: number) {
+  async findByIdUser(idUser: number): Promise<any> {
     const today = new Date();
-    return this.reservaRepository
-      .createQueryBuilder('reserva')
-      .where('reserva.id_usuario_reserva = :idUser', { idUser })
-      .andWhere('reserva.fl_ativo = :flAtivo', { flAtivo: true })
-      .andWhere('reserva.periodo_fim >= :today', { today: today.toISOString() }) // Usando ISOString para compatibilidade
-      .getMany();
+    const result = this.reservaRepository.query(
+      `
+    SELECT reservas.*, baia.nome, baia.andar
+      FROM reservas
+      INNER JOIN baia ON baia.id = reservas.id_baia_reserva
+      WHERE reservas.id_usuario_reserva = ? AND
+            reservas.fl_ativo = ? AND
+            reservas.periodo_fim >= ?`,
+      [idUser, true, today.toISOString()],
+    );
+    return result;
   }
 
   update(id: number, updateReservaDto: UpdateReservaDto) {

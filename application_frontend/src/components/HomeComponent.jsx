@@ -93,6 +93,7 @@ deleteStatus = (confirm) =>{
         appServices
           .listReservaByIdUser(idUser)
           .then((res) => {
+            console.log(res)
             this.setState({ reservasUser: res.data });
             this.setState({ countReservas: res.data.length });
           })
@@ -143,7 +144,7 @@ deleteStatus = (confirm) =>{
               <><h4>Suas reservas</h4><table className='table table-dark table-striped table-bordered text-center'>
                   <thead>
                     <tr>
-                      <th>Mesa reservada</th>
+                      <th>Andar/Mesa reservada</th>
                       <th>Período inicio</th>
                       <th>Período fim</th>
                       <th>Ações</th>
@@ -153,7 +154,7 @@ deleteStatus = (confirm) =>{
                     {Object.entries(this.state.reservasUser).map(([key, data]) => (
                       <tr key={key}>
                         <td>
-                          <Badge>{data.id_baia_reserva}</Badge>
+                          <Badge>{data.andar}° andar/{data.nome}</Badge>
                         </td>
                         <td>
                           <label variant='primary'>{moment(data.periodo_inicio).format('DD/MM/yyyy HH:mm')}</label>

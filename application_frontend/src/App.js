@@ -12,6 +12,7 @@ import ReservasComponent from './components/ReservasComponent';
 import AdminComponent from './components/AdminComponent';
 import ReplacePasswordComponent from './components/ReplacePasswordComponent';
 import Layout from './components/Layout';
+import PerfilComponent from './components/PerfilComponent';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
 									<Route path="/about" component={AboutComponent}/>
 									<Route path="/contact" component={ContactComponent}/>
 									<Route path="/admin" component={AdminComponent}/>
+									<Route path="/perfil" component={PerfilComponent}/>
 								</Layout>
 								</Switch>
 							</Route>
