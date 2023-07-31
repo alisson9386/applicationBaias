@@ -79,7 +79,7 @@ class NavbarComponent extends Component {
 
                     <Nav.Link href="/about">Sobre</Nav.Link>
                     <NavDropdown title="Perfil" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.2">Perfil</NavDropdown.Item>
+                    <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
                     {tipoUser === 1 ? (<NavDropdown.Item href="/admin">Admin</NavDropdown.Item>) : (<></>)}
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#" onClick={this.logout}>

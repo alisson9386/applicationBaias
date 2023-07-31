@@ -93,7 +93,6 @@ deleteStatus = (confirm) =>{
         appServices
           .listReservaByIdUser(idUser)
           .then((res) => {
-            console.log(res)
             this.setState({ reservasUser: res.data });
             this.setState({ countReservas: res.data.length });
           })
