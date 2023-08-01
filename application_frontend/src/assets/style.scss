@@ -191,3 +191,13 @@ a{
     width: 100%;
     height: 15vh;;
 }
+
+/* Ajuste o tamanho do modal */
+.custom-modal .modal-dialog {
+    max-width: 95%;
+}
+
+/* Ajuste a margem do modal para centralizá-lo */
+.custom-modal .modal-content {
+    margin: 0 auto;
+}

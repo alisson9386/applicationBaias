@@ -6,4 +6,5 @@ export class CreateUserDto {
   idade: number;
   tipo_user: number;
   setor_user: number;
+  img_perfil: string;
 }

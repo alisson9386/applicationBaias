@@ -30,7 +30,11 @@ export class UsersService {
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
-    updateUserDto.senha = await bcrypt.hash(updateUserDto.senha, 10);
+    if (updateUserDto.senha && updateUserDto.senha != '') {
+      updateUserDto.senha = await bcrypt.hash(updateUserDto.senha, 10);
+    } else if (updateUserDto.senha == '') {
+      delete updateUserDto.senha;
+    }
     return this.userRepository.update(id, updateUserDto);
   }
 

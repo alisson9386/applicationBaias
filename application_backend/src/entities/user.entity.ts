@@ -26,6 +26,9 @@ export class User {
   @Column()
   setor_user: number;
 
+  @Column()
+  img_perfil: string;
+
   @Column({ default: true })
   fl_ativo: boolean;
 }
