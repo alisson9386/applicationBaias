@@ -5,8 +5,7 @@ import { isExpired, decodeToken } from 'react-jwt';
 import appServices from '../services/app-services';
 import Badge from 'react-bootstrap/Badge';
 import moment from 'moment';
-import { BsFillTrashFill } from "react-icons/bs";
-import { BsPencilSquare } from "react-icons/bs";
+import { BsFillTrashFill, BsPencilSquare } from "react-icons/bs";
 import Swal from 'sweetalert2';
 import AppServices from '../services/app-services'
 import Modal from 'react-bootstrap/Modal';

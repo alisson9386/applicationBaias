@@ -8,6 +8,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Cookies from 'js-cookie';
+import logo from '../assets/img/logo3.png';
+import { BsPersonCircle, BsFillGearFill, BsDashCircle } from "react-icons/bs";
 
 const Toast = Swal.mixin({
     toast: true,
@@ -34,11 +36,13 @@ class NavbarComponent extends Component {
             tipo_user:'',
             usuario:'',
             nome:'',
-            setor_user:''
+            setor_user:'',
+            imgPerfil:'',
         }
     }
     
     componentDidMount(){
+        const imgPerfilPadrao = "https://cdn-icons-png.flaticon.com/512/3106/3106921.png";
         const token = Cookies.get('token');
         const myDecodedToken = decodeToken(token);
         const isMyTokenExpired = isExpired(token);
@@ -50,6 +54,11 @@ class NavbarComponent extends Component {
             this.setState({usuario: myDecodedToken.user.usuario});
             this.setState({nome: myDecodedToken.user.nome});
             this.setState({setor_user: myDecodedToken.user.setor_user});
+            if(myDecodedToken.user.img_perfil != null){
+                this.setState({imgPerfil: myDecodedToken.user.img_perfil})
+            }else{
+                this.setState({imgPerfil: imgPerfilPadrao})
+            }
 
         }
     }
@@ -66,7 +75,7 @@ class NavbarComponent extends Component {
         return (
             <Navbar bg="dark" expand="lg" variant="dark">
             <Container>
-            <Navbar.Brand href="/index">WorkSpots</Navbar.Brand>
+            <Navbar.Brand href="/index"><img src={logo} className="img-thumbnail" alt="..." width="50" height="50" style={{ borderRadius: "50%", margin: "auto" }}></img></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
@@ -78,12 +87,22 @@ class NavbarComponent extends Component {
                     </NavDropdown>
 
                     <Nav.Link href="/about">Sobre</Nav.Link>
-                    <NavDropdown title="Perfil" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
-                    {tipoUser === 1 ? (<NavDropdown.Item href="/admin">Admin</NavDropdown.Item>) : (<></>)}
+                    <NavDropdown title={
+                    <div className="pull-left">
+                        <img className="thumbnail-image" 
+                            src={this.state.imgPerfil} 
+                            width="30" 
+                            height="30" 
+                            style={{ borderRadius: "50%" }}
+                            alt="user pic"
+                        />
+                    </div>
+                }  id="basic-nav-dropdown">
+                    <NavDropdown.Item href="/perfil"><BsPersonCircle/>  Meu perfil</NavDropdown.Item>
+                    {tipoUser === 1 ? (<NavDropdown.Item href="/admin"><BsFillGearFill/>  Admin</NavDropdown.Item>) : (<></>)}
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#" onClick={this.logout}>
-                        Logout
+                        <BsDashCircle style={{ color: 'red' }}/>  Logout
                     </NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
