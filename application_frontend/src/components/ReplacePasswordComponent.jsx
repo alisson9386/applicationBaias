@@ -44,8 +44,10 @@ class ReplacePasswordComponent extends Component {
 
         this.state = {
                 usuario: '',
-                dadosUser:{}
-
+                dadosUser:{},
+                emailjs_service:'',
+                emailjs_template:'',
+                emailjs_user:''
         }
         this.changeUserHandler = this.changeUserHandler.bind(this);
     }
@@ -55,6 +57,9 @@ class ReplacePasswordComponent extends Component {
     }
 
     componentDidMount(){
+        this.setState({emailjs_service: process.env.REACT_APP_SERVICE_ID});
+        this.setState({emailjs_template: process.env.REACT_APP_TEMPLATE_ID});
+        this.setState({emailjs_user: process.env.REACT_APP_USER_ID});
     }
 
     toLogin = () =>{
@@ -76,10 +81,10 @@ class ReplacePasswordComponent extends Component {
             return;
         });
         emailjs.send(
-            process.env.REACT_APP_SERVICE_ID, 
-            process.env.REACT_APP_TEMPLATE_ID, 
+            this.state.emailjs_service, 
+            this.state.emailjs_template, 
             templateParams, 
-            process.env.REACT_APP_USER_ID
+            this.state.emailjs_user
            )
            .then((result) => {
                console.log(result.text);

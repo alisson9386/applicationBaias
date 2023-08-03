@@ -65,7 +65,8 @@ class PerfilComponent extends Component {
             tipoUsuarios:[],
             showModal: false,
             imgPerfil:'',
-            imgPerfilHash:''
+            imgPerfilHash:'',
+            awsBucket:''
         }
 
         this.changeTipoUserHandler = this.changeTipoUserHandler.bind(this);
@@ -122,6 +123,7 @@ class PerfilComponent extends Component {
             this.setState({setor_user: setor.nome_setor})
             this.setState({tipo_user: tipo.tipo})
             this.setState({tipo_user_id: tipo.id})
+            this.setState({awsBucket: process.env.REACT_APP_AWS_BUCKET})
         }
 
     } catch (error) {
@@ -177,7 +179,7 @@ class PerfilComponent extends Component {
         let img;
         if(this.state.imgPerfil !== imgPerfilPadrao && this.state.imgPerfilHash !== ''){
             const params = {
-                Bucket: process.env.REACT_APP_AWS_BUCKET,
+                Bucket: this.state.awsBucket,
                 Key: this.state.usuario + '/perfilImg.' + this.state.imgPerfilHash.name.split('.').pop(),
                 Body: this.state.imgPerfilHash,
                 ContentDisposition: 'inline'

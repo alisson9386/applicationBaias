@@ -1,9 +1,12 @@
 // src/aws-config.js
+let accessKey = process.env.REACT_APP_AWS_ACCESSKEY
+let secretKey = process.env.REACT_APP_AWS_SECRETKEY
+let reg = process.env.REACT_APP_AWS_REGION
+
 const awsConfig = {
-    accessKeyId: process.env.REACT_APP_AWS_ACCESSKEY,
-    secretAccessKey: process.env.REACT_APP_AWS_SECRETKEY,
-    region: process.env.REACT_APP_AWS_REGION,
-  };
-  
-  export default awsConfig;
-  
+  accessKeyId: accessKey,
+  secretAccessKey: secretKey,
+  region: reg,
+};
+
+export default awsConfig;
