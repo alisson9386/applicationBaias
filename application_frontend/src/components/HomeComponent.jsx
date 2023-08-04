@@ -117,6 +117,7 @@ deleteStatus = (confirm) =>{
       if(res.data === 'Reserva deletada'){
         var confirm = true;
         this.deleteStatus(confirm)
+        window.location.reload();
       }
     }).catch(error => {
       console.log(error);

@@ -227,10 +227,22 @@ class PerfilComponent extends Component {
             <>
                 <br /><br /><br /><br /><br />
                 <div className='containerPerfil'>
-                    <button title="Excluir"
-                        className='btn btn-success'
+                    <div style={{WebkitAlignItems: 'center'}}>
+                    <img
+                        src={imgPerfil}
+                        className="img-thumbnail"
+                        alt="..." width="200"
+                        height="200"
+                        style={{ borderRadius: "50%", margin: "auto" }}>
+                    </img>
+                    <br /><br />
+                    <button
+                        style={{  }}
+                        type="button"
+                        className='btn btn-dark'
                         onClick={() => this.handleEditPerfil()}
                     >Editar perfil</button>
+                    </div>
                 </div>
                 <Modal className='modal modal-lg' show={this.state.showModal} onHide={this.handleClose} dialogClassName="custom-modal">
                     <Modal.Header closeButton>
@@ -348,18 +360,14 @@ class PerfilComponent extends Component {
                                             />
                                         </div>
                                     </div>
-
-                                    <div className="form-group form-check">
-                                        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                                        <label className="form-check-label" htmlFor="exampleCheck1">Clique em mim</label>
-                                    </div>
                                 </div>
                             </form>
                         </div>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="primary" id="termosButton" data-toggle="modal" onClick={this.editarPerfil}>Salvar</Button>
-                        <Button variant="secondary" onClick={this.handleClose}>
+                        <span style={{ marginLeft: '10px' }}></span>
+                        <Button variant="danger" onClick={this.handleClose}>
                             Cancelar
                         </Button>
                     </Modal.Footer>
