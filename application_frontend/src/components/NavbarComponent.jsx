@@ -42,7 +42,7 @@ class NavbarComponent extends Component {
     }
     
     componentDidMount(){
-        const imgPerfilPadrao = "https://cdn-icons-png.flaticon.com/512/3106/3106921.png";
+        const imgPerfilPadrao = "https://www.promoview.com.br/uploads/images/unnamed%2819%29.png";
         const token = Cookies.get('token');
         const myDecodedToken = decodeToken(token);
         const isMyTokenExpired = isExpired(token);
@@ -79,7 +79,7 @@ class NavbarComponent extends Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link href="/index">Home</Nav.Link>
+                    <Nav.Link href="/index">Inicio</Nav.Link>
 
                     <NavDropdown title="Reservas" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/reserv">Cadastrar Nova Reserva</NavDropdown.Item>
@@ -87,6 +87,12 @@ class NavbarComponent extends Component {
                     </NavDropdown>
 
                     <Nav.Link href="/about">Sobre</Nav.Link>
+                </Nav>
+                    </Navbar.Collapse>
+                    <Navbar.Collapse className="justify-content-end">
+                    <Navbar.Text className="m-3">
+                        {this.state.usuario}
+                    </Navbar.Text>
                     <NavDropdown title={
                     <div className="pull-left">
                         <img className="thumbnail-image" 
@@ -105,8 +111,7 @@ class NavbarComponent extends Component {
                         <BsDashCircle style={{ color: 'red' }}/>  Logout
                     </NavDropdown.Item>
                     </NavDropdown>
-                </Nav>
-                </Navbar.Collapse>
+                    </Navbar.Collapse>
             </Container>
             </Navbar>
         )

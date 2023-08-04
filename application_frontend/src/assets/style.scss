@@ -201,3 +201,45 @@ a{
 .custom-modal .modal-content {
     margin: 0 auto;
 }
+
+
+.dropdown-toggle::after {
+    display: none !important; 
+}
+
+.edit-profile-image {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    overflow: hidden; /* Esconde a borda extra */
+}
+
+.edit-profile-image img {
+    border-radius: 50%;
+    margin: auto;
+    transition: filter 0.3s;
+    display: block; /* Impede a adição de espaços extras ao redor da imagem */
+}
+
+.edit-profile-image:hover img {
+    filter: brightness(0.8); /* Escurece a imagem ao passar o mouse */
+}
+
+.edit-profile-overlay {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.1);
+    color: black;
+    padding: 5px 10px;
+    font-size: 14px;
+    opacity: 0; /* Começa invisível */
+    transition: opacity 0.3s;
+    pointer-events: none; /* Não interfere com cliques/hovers */
+}
+
+.edit-profile-image:hover .edit-profile-overlay {
+    opacity: 1; /* Mostra ao passar o mouse */
+}
