@@ -125,16 +125,17 @@ class ReservasComponent extends Component {
             <div className="containerCenter">
             <form method="POST" className="formLogin">
                     <h3>Agendar reserva</h3>
-                        <div class="row">
-                        <div class="col">
+                        <div className="row">
+                        <div className="col">
                         <label htmlFor="data" className="label-with-spacing">Inicio da Reserva:</label>
                             <input
                                 type="datetime-local"
                                 name="dataInicio"
                                 value={this.state.dataInicio}
-                                onChange={this.changeDataInicioHandler} />
+                                onChange={this.changeDataInicioHandler}
+                                min={minDateTime} />
                         </div>
-                        <div class="col">
+                        <div className="col">
                         <label htmlFor="data" className="label-with-spacing">Fim da Reserva:</label>
                             <input
                                 type="datetime-local"
@@ -144,13 +145,14 @@ class ReservasComponent extends Component {
                                 min={minDateTime}
                                 max={maxDateTime} />
                         </div>
-                        <div class="col">
-                        <button type="button" className="btn btn-primary mr-2" onClick={this.buscarBaiasDisponiveis}>Buscar</button>
+                        <div className="col">
+                        <button type="button" className="btn btn-primary mr-2" onClick={this.buscarBaiasDisponiveis}>Buscar Mesas Disponíveis</button>
                             {" "}
                             <button type="button" className="btn btn-secondary ml-2" onClick={this.handleClearFields}>Limpar</button>
                         </div>
                         </div>
                 </form>
+                <br/>
                 <h1>Teste</h1>
             </div></>
         )

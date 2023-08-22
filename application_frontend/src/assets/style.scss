@@ -159,6 +159,10 @@ a{
     text-align: center;
 }
 
+.card{
+    width: 18rem;
+}
+
 .containerUsually {
     color: black;
     width: 80%;
@@ -168,10 +172,10 @@ a{
     padding: 45px 27px 30px 27px;
 }
 
-.containerPerfil{
+.containerPerfilEdit{
     background-color: white;
     color: black;
-    width: 80%;
+    width: 100%;
     margin: auto;
     justify-content: space-between;
     gap: 65px;

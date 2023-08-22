@@ -236,8 +236,8 @@ class PerfilComponent extends Component {
             <>
                 <br /><br /><br /><br /><br />
                 <div className='containerPerfilView'>
-                <div class="row g-3">
-                <div class="col d-flex align-items-center justify-content-center">
+                <div className="row g-3">
+                <div className="col d-flex align-items-center justify-content-center">
                     <div>
                     <img
                         src={imgPerfil}
@@ -249,7 +249,7 @@ class PerfilComponent extends Component {
                     </img>
                     </div>
                 </div>
-                <div class="col">
+                <div className="col">
                     <label>Nome</label>
                         <input type="text"
                             className="form-control"
@@ -297,9 +297,6 @@ class PerfilComponent extends Component {
                             onClick={() => this.handleEditPerfil()}
                         >Editar perfil</button>
                 </div>
-
-
-
                 </div>
                 </div>
                 <Modal className='modal modal-lg' show={this.state.showModal} onHide={this.handleClose} dialogClassName="custom-modal">
@@ -307,7 +304,7 @@ class PerfilComponent extends Component {
                         <Modal.Title>Editar perfil</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <div className='containerPerfil'>
+                        <div className='containerPerfilEdit'>
                             <br />
                             <div className="edit-profile-image" onClick={this.handleImgPerfilClick} style={{ display: "flex", justifyContent: "center" }}>
                                 <img
