@@ -178,6 +178,16 @@ a{
     padding: 45px 27px 30px 27px;
 }
 
+.containerPerfilView{
+    background-color: white;
+    color: black;
+    width: 30%;
+    margin: auto;
+    justify-content: space-between;
+    gap: 65px;
+    padding: 45px 27px 30px 27px;
+}
+
 .table{
     background-color: white;
 }
@@ -243,3 +253,4 @@ a{
 .edit-profile-image:hover .edit-profile-overlay {
     opacity: 1; /* Mostra ao passar o mouse */
 }
+

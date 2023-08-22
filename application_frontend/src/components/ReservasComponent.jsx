@@ -122,19 +122,20 @@ class ReservasComponent extends Component {
         const maxDateTime = `${maxData}T${maxHora}`;
         return (
             <><br/><br/><br/><br/>
-            <div className="divReserv">
+            <div className="containerCenter">
             <form method="POST" className="formLogin">
                     <h3>Agendar reserva</h3>
-                        <div className="form-group">
-                            <label htmlFor="data" className="label-with-spacing">Inicio da Reserva:</label>
+                        <div class="row">
+                        <div class="col">
+                        <label htmlFor="data" className="label-with-spacing">Inicio da Reserva:</label>
                             <input
                                 type="datetime-local"
                                 name="dataInicio"
                                 value={this.state.dataInicio}
                                 onChange={this.changeDataInicioHandler} />
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="data" className="label-with-spacing">Fim da Reserva:</label>
+                        <div class="col">
+                        <label htmlFor="data" className="label-with-spacing">Fim da Reserva:</label>
                             <input
                                 type="datetime-local"
                                 name="dataFim"
@@ -143,12 +144,14 @@ class ReservasComponent extends Component {
                                 min={minDateTime}
                                 max={maxDateTime} />
                         </div>
-                        <div className="form-group">
-                            <button type="button" className="btn btn-primary mr-2" onClick={this.buscarBaiasDisponiveis}>Buscar</button>
+                        <div class="col">
+                        <button type="button" className="btn btn-primary mr-2" onClick={this.buscarBaiasDisponiveis}>Buscar</button>
                             {" "}
                             <button type="button" className="btn btn-secondary ml-2" onClick={this.handleClearFields}>Limpar</button>
                         </div>
+                        </div>
                 </form>
+                <h1>Teste</h1>
             </div></>
         )
     }

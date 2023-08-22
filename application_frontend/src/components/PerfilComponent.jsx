@@ -67,7 +67,8 @@ class PerfilComponent extends Component {
             showModal: false,
             imgPerfil: '',
             imgPerfilHash: '',
-            awsBucket: ''
+            awsBucket: '',
+            modalImg: false
         }
 
         this.fileInputRef = React.createRef();
@@ -99,6 +100,14 @@ class PerfilComponent extends Component {
     handleImgPerfilClick = () => {
         this.fileInputRef.current.click();
     };
+
+    abrirModalImg = () => {
+        this.setState({ modalImg: true });
+    }
+
+    fecharModalImg = () => {
+        this.setState({ modalImg: false });
+    }
 
     async componentDidMount() {
         try {
@@ -222,27 +231,76 @@ class PerfilComponent extends Component {
     }
 
     render() {
-        const { setores, tipoUsuarios, tipo_user, setor_user, imgPerfil } = this.state;
+        const { setores, tipoUsuarios, tipo_user, setor_user, imgPerfil, modalImg } = this.state;
         return (
             <>
                 <br /><br /><br /><br /><br />
-                <div className='containerPerfil'>
-                    <div style={{WebkitAlignItems: 'center'}}>
+                <div className='containerPerfilView'>
+                <div class="row g-3">
+                <div class="col d-flex align-items-center justify-content-center">
+                    <div>
                     <img
                         src={imgPerfil}
                         className="img-thumbnail"
                         alt="..." width="200"
                         height="200"
-                        style={{ borderRadius: "50%", margin: "auto" }}>
+                        style={{ borderRadius: "50%", cursor: "pointer"}}
+                        onClick={this.abrirModalImg}>
                     </img>
-                    <br /><br />
-                    <button
-                        style={{  }}
-                        type="button"
-                        className='btn btn-dark'
-                        onClick={() => this.handleEditPerfil()}
-                    >Editar perfil</button>
                     </div>
+                </div>
+                <div class="col">
+                    <label>Nome</label>
+                        <input type="text"
+                            className="form-control"
+                            placeholder="Nome"
+                            value={this.state.nome}
+                            disabled="disabled"
+                        />
+                        <br/>
+                        <label>Email</label>
+                        <input type="text"
+                            className="form-control"
+                            placeholder="Nome"
+                            value={this.state.email}
+                            disabled="disabled"
+                        />
+                        <br/>
+                        <label>Usuario</label>
+                        <input type="text"
+                            className="form-control"
+                            placeholder="Nome"
+                            value={this.state.usuario}
+                            disabled="disabled"
+                        />
+                        <br/>
+                        <label>Setor</label>
+                        <input type="text"
+                            className="form-control"
+                            placeholder="Nome"
+                            value={this.state.setor_user}
+                            disabled="disabled"
+                        />
+                        <br/>
+                        <label>Tipo de Usuário</label>
+                        <input type="text"
+                            className="form-control"
+                            placeholder="Nome"
+                            value={tipo_user}
+                            disabled="disabled"
+                        />
+                        <br/>
+                        <button
+                            style={{  }}
+                            type="button"
+                            className='btn btn-dark'
+                            onClick={() => this.handleEditPerfil()}
+                        >Editar perfil</button>
+                </div>
+
+
+
+                </div>
                 </div>
                 <Modal className='modal modal-lg' show={this.state.showModal} onHide={this.handleClose} dialogClassName="custom-modal">
                     <Modal.Header closeButton>
@@ -371,6 +429,11 @@ class PerfilComponent extends Component {
                             Cancelar
                         </Button>
                     </Modal.Footer>
+                </Modal>
+                <Modal className='modal modal-lg' show={modalImg} onHide={this.fecharModalImg} dialogClassName="custom-modal">
+                <Modal.Header closeButton>
+                    </Modal.Header>
+                        <img src={imgPerfil} alt="Imagem maior" className="img-modal" />
                 </Modal>
             </>
         )

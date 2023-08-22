@@ -195,6 +195,7 @@ deleteStatus = (confirm) =>{
                         </Modal.Body>
                         <Modal.Footer>
                         <Button variant="primary" id="termosButton" data-toggle="modal" /*onClick={() => {this.handleClose(); this.handleAceitarTerminos();}}*/>Salvar</Button>
+                        <span style={{ marginLeft: '10px' }}></span>
                         <Button variant="secondary" onClick={this.handleClose}>
                         Cancelar
                         </Button>

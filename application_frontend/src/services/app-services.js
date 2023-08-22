@@ -1,4 +1,4 @@
-import api_baias from '../api-baias'
+import api_baias from '../api/api-baias'
 
 class BackService {
 
