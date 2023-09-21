@@ -25,7 +25,7 @@ class LoginComponent extends Component {
         Swal.fire({
                     icon: 'error',
 					title: 'Falha no login',
-                    html: err.response.data.message,
+                    html: err.message,
 						})	
     }
     showAlertUserAuthenticated = () => {

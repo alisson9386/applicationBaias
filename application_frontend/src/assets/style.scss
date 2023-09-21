@@ -157,6 +157,8 @@ a{
     gap: 65px;
     padding: 45px 27px 30px 27px;
     text-align: center;
+    overflow:auto;
+    height:100%
 }
 
 .card{
@@ -258,3 +260,8 @@ a{
     opacity: 1; /* Mostra ao passar o mouse */
 }
 
+.card-container {
+    max-height: 400px; /* Defina a altura máxima desejada */
+    overflow-y: auto; /* Adicione uma barra de rolagem vertical quando necessário */
+  }
+  

@@ -80,13 +80,10 @@ class NavbarComponent extends Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                     <Nav.Link href="/index">Inicio</Nav.Link>
-
                     <NavDropdown title="Reservas" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/reserv">Cadastrar Nova Reserva</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.1">Minhas Reservas</NavDropdown.Item>
                     </NavDropdown>
-
-                    <Nav.Link href="/about">Sobre</Nav.Link>
                 </Nav>
                     </Navbar.Collapse>
                     <Navbar.Collapse className="justify-content-end">

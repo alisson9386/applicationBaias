@@ -1,2 +1,2 @@
-cd C:\Users\alisson.coura\Documents\Projetos Avulsos\applicationBaias\application_backend
+cd C:\Users\Alisson\Documents\Projetos pessoais\workSpots\application_backend
 npm run start
