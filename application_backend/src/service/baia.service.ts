@@ -29,6 +29,7 @@ export class BaiaService {
         `NOT EXISTS (
           SELECT 1 FROM reservas 
           WHERE reservas.id_baia_reserva = baia.id 
+          AND reservas.fl_ativo = 1
           AND reservas.periodo_inicio <= :periodo_fim 
           AND reservas.periodo_fim >= :periodo_inicio)`,
       )

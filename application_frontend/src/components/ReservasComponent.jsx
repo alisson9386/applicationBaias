@@ -59,6 +59,10 @@ class ReservasComponent extends Component {
 
     changeDataInicioHandler= (event) => {
         this.setState({dataInicio: event.target.value});
+        const dataFimInput = document.querySelector('input[name="dataFim"]');
+        if (dataFimInput) {
+        dataFimInput.min = event.target.value;
+        }
     }
 
     changeDataFimHandler= (event) => {
@@ -155,13 +159,13 @@ class ReservasComponent extends Component {
 
 
     render() {
-        const minHora = '07:00';
-        const maxHora = '19:00';
+        const minHora = '06:00';
+        const maxHora = '20:00';
 
         const minData = new Date().toISOString().slice(0, 10);
         const minDateTime = `${minData}T${minHora}`;
 
-        const maxData = '';
+        const maxData = ''
         const maxDateTime = `${maxData}T${maxHora}`;
         const mesas = this.state.baias.length > 0 ? true : false;
         return (
@@ -177,7 +181,8 @@ class ReservasComponent extends Component {
                                 name="dataInicio"
                                 value={this.state.dataInicio}
                                 onChange={this.changeDataInicioHandler}
-                                min={minDateTime} />
+                                min={minDateTime}
+                                max={maxDateTime}  />
                         </div>
                         <div className="col">
                         <label htmlFor="data" className="label-with-spacing">Fim da Reserva:</label>

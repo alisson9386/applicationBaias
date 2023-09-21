@@ -153,7 +153,7 @@ deleteStatus = (confirm) =>{
                     {Object.entries(this.state.reservasUser).map(([key, data]) => (
                       <tr key={key}>
                         <td>
-                          <Badge>{data.andar}° andar/{data.nome}</Badge>
+                          <Badge>{data.andar}° andar - {data.nome}</Badge>
                         </td>
                         <td>
                           <label variant='primary'>{moment(data.periodo_inicio).format('DD/MM/yyyy HH:mm')}</label>
