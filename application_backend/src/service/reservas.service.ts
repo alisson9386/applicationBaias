@@ -15,8 +15,10 @@ export class ReservasService {
     return this.reservaRepository.save(createReservaDto);
   }
 
-  findAll() {
-    return this.reservaRepository.find();
+  async findAll() {
+    return this.reservaRepository.createQueryBuilder('reservas')
+      .where('reservas.fl_ativo = :ativo', { ativo: true })
+      .getMany();
   }
 
   findOne(id: number) {

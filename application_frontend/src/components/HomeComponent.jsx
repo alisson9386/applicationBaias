@@ -5,11 +5,9 @@ import { isExpired, decodeToken } from 'react-jwt';
 import appServices from '../services/app-services';
 import Badge from 'react-bootstrap/Badge';
 import moment from 'moment';
-import { BsFillTrashFill, BsPencilSquare } from "react-icons/bs";
+import { BsFillTrashFill} from "react-icons/bs";
 import Swal from 'sweetalert2';
 import AppServices from '../services/app-services'
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 import ChairCanvas from './canvas/Chair';
 
 class HomeComponent extends Component {
@@ -162,14 +160,14 @@ deleteStatus = (confirm) =>{
                           <label variant='primary'>{moment(data.periodo_fim).format('DD/MM/yyyy HH:mm')}</label>
                         </td>
                         <td>
-                          <button title="Editar"
+                          {/*<button title="Editar"
                             className='btn btn-warning'
                             onClick={() => this.handleEditaReserva(data.id)}
                           >
                             <BsPencilSquare />
-                          </button>
+                    </button>*/}
                           {" "}
-                          <button title="Excluir"
+                          <button title="Excluir Reserva"
                             className='btn btn-danger'
                             onClick={() => this.handleDeleteReserva(data.id)}
                           >
@@ -187,20 +185,6 @@ deleteStatus = (confirm) =>{
             </div>
           </div>
         </div>
-        <Modal className='modal' show={this.state.showModal} onHide={this.handleClose}>
-                        <Modal.Header closeButton>
-                        <Modal.Title>Editar reserva</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                        </Modal.Body>
-                        <Modal.Footer>
-                        <Button variant="primary" id="termosButton" data-toggle="modal" /*onClick={() => {this.handleClose(); this.handleAceitarTerminos();}}*/>Salvar</Button>
-                        <span style={{ marginLeft: '10px' }}></span>
-                        <Button variant="secondary" onClick={this.handleClose}>
-                        Cancelar
-                        </Button>
-                        </Modal.Footer>
-                    </Modal>
       </div>
     );
   }

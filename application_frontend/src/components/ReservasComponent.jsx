@@ -42,6 +42,17 @@ class ReservasComponent extends Component {
 						})	
                         return;
     }
+
+    showAlertEmptyDate = () => {
+        Swal.fire({
+                    icon: 'warning',
+					title: 'É necessário selecionar data de início e fim da reserva!',
+                    showConfirmButton: false,
+                    timerProgressBar: true,
+                    timer: 5000 
+						})	
+                        return;
+    }
     
     constructor(props){
         super(props)
@@ -126,6 +137,10 @@ class ReservasComponent extends Component {
       };
 
       buscarBaiasDisponiveis = () =>{
+          if(this.state.dataInicio === '' || this.state.dataFim === ''){
+              this.showAlertEmptyDate();
+              return
+            }
         this.showLoading('Buscando mesas disponíveis');
         var periodos = {
             'periodo_inicio': this.state.dataInicio,

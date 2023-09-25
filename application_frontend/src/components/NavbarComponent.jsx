@@ -82,7 +82,7 @@ class NavbarComponent extends Component {
                     <Nav.Link href="/index">Inicio</Nav.Link>
                     <NavDropdown title="Reservas" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/reserv">Cadastrar Nova Reserva</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.1">Minhas Reservas</NavDropdown.Item>
+                    {/*<NavDropdown.Item href="#action/3.1">Minhas Reservas</NavDropdown.Item>*/}
                     </NavDropdown>
                 </Nav>
                     </Navbar.Collapse>

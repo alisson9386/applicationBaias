@@ -18,6 +18,7 @@ class BackService {
     saveBaia(baia){ return api_baias.post('/baia/', baia); }
     updateBaia(baia, idBaia){ return api_baias.patch('/baia/' + idBaia, baia); }
     deleteBaia(idBaia){ return api_baias.delete('/baia/' + idBaia); }
+    activateBaia(idBaia){ return api_baias.patch('/baia/activateBaia/' + idBaia); }
 
     //Serviços de tipo_user
     listTipoUser(){ return api_baias.get('/tipo-users/'); }

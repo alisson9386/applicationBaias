@@ -46,4 +46,10 @@ export class BaiaController {
     const desactivate = this.baiaService.desactivateBaia(+id);
     return desactivate ? 'Baia deletada' : 'Erro ao deletar';
   }
+
+  @Patch('activateBaia/:id')
+  activate(@Param('id') id: string) {
+    const activate = this.baiaService.activateBaia(+id);
+    return activate ? 'Baia ativada' : 'Erro ao ativar';
+  }
 }
