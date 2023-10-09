@@ -7,7 +7,8 @@ import { isExpired, decodeToken } from "react-jwt";
 import history from "../history";
 import Swal from "sweetalert2";
 import MesasComponent from "./admin/Mesas";
-import AppServices from "../services/app-services";
+//import AppServices from "../services/app-services";
+import ReservasComponent from "./admin/Reservas";
 
 class AdminComponent extends Component {
   showLoading = (text) => {
@@ -70,7 +71,7 @@ class AdminComponent extends Component {
       useAuth.handleLogout();
     } else if (myDecodedToken.user.tipo_user !== 1) {
       history.push("/");
-    } else {
+    } /*else {
       //this.showLoading("Carregando dados!");
       try {
         const [listBaia, listReserva, listSetor, listTipoUser, listUsers] =
@@ -92,7 +93,7 @@ class AdminComponent extends Component {
       } catch (error) {
         console.log(error);
       }
-    }
+    }*/
   }
 
   render() {
@@ -112,7 +113,7 @@ class AdminComponent extends Component {
               <MesasComponent/>
             </Tab>
             <Tab eventKey="reservas" title="Reservas">
-              Reservas
+              <ReservasComponent/>
             </Tab>
             <Tab eventKey="setores" title="Setores">
               Setores
