@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import {
-  BsPencilSquare,
-  BsFillCheckCircleFill,
   BsFillTrashFill,
   BsFillPlusSquareFill,
 } from "react-icons/bs";
